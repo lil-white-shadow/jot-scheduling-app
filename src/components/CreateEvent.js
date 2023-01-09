@@ -25,11 +25,11 @@ export default function CreateEvent(props) {
   }
   return (
     <div>
-      <h1>Your event id is {props.newEventId}</h1>
+      <Link to={"/"}>Return home</Link>
       {
         !isEventCreated ?
         <div>
-        <h2>Enter Event Information</h2>
+        <h1>Enter Event Information</h1>
         <form onSubmit={onSubmit} noValidate>
           <div>
             <label htmlFor="eventOrganizer">Your Name: </label>
@@ -58,15 +58,13 @@ export default function CreateEvent(props) {
           <button type="submit">Create</button>
         </form>
       </div>
-      : null
+      :
+      <div>
+        <span>Your event is successfully and your event id is {props.newEventId}. Click </span>
+        <Link to={"/view-eventId=" + props.newEventId}>here</Link>
+        <span> to view your event.</span>
+      </div>
       }
-      <Link to={"/view-eventId=" + props.newEventId}>
-        <button>View event</button>
-      </Link>
-      <Link to={"/"}>
-        <button>Return to home</button>
-      </Link>
-      <div>{props.currentEvents.length}</div>
     </div>
   )
 }

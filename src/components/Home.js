@@ -25,18 +25,19 @@ export default function Home(props) {
         {
           props.currentEvents.map(event =>
             <div key={event.eventId}>
-              <h3>
-                {event.eventName} on {event.eventDate} by {event.eventOrganizer} [Id: {event.eventId}]
-              </h3>
-              <Link to={"/view-eventId=" + event.eventId}>
-                <button>View event</button>
-              </Link>
+              <span>
+                <Link to={"/view-eventId=" + event.eventId}>{event.eventId}</Link>
+              </span>
+              <span>
+               : {event.eventName} on {event.eventDate} by {event.eventOrganizer}
+              </span>
+
             </div>
           )
         }
       </div>
       <div>
-        <h2>Click below to schedule your next event!</h2>
+        <h2>Click below to schedule a new event.</h2>
         <Link to={"create-eventId=" + newEventId}>
           <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button>
         </Link>

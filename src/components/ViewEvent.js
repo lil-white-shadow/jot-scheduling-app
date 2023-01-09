@@ -33,6 +33,7 @@ export default function ViewEvent(props) {
   }
   return(
     <div>
+      <Link to={"/"}>Return home</Link>
       <h1>You've been invited!</h1>
       <div>
         <h2>Event: {props.currentEvent.eventName}</h2>
@@ -62,7 +63,7 @@ export default function ViewEvent(props) {
             <label htmlFor="guestStatus">Are you a guest?: </label>
             <input type="checkbox" name="guestStatus" onChange={e => setGuestStatus(e.target.value)}/>
           </div>
-          <button type="submit">Submit your vote</button>
+          <button type="submit">Submit</button>
         </form>
       </div>
       : null
@@ -89,9 +90,6 @@ export default function ViewEvent(props) {
           }
         </ul>
       </div>
-      <Link to={"/"}>
-        <button>Return to home</button>
-      </Link>
     </div>
   )
 }
