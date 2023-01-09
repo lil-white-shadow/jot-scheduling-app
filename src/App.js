@@ -21,7 +21,7 @@ export default function App() {
   const [specialInvitees, setSpecialInvitees] = useState([]);
 
   return (
-    <div>
+    <div className="App">
     <BrowserRouter>
       <Routes>
           <Route

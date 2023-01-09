@@ -1,0 +1,18 @@
+/* Color theme & max width variables */
+:root {
+  --primary: #1565C0;
+  --secondary: #E6EFF8;
+  --tertiary: #ffffff;
+  --max-width: 1086px;
+}
+
+.App {
+  border: 3px solid red;
+  min-height: 100vh;
+  background-color: var(--secondary);
+  color: var(--primary);
+}
+
+.App a {
+  color: var(--primary);
+}
