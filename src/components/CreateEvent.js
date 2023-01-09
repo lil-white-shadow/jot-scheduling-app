@@ -1,6 +1,9 @@
+import { Link } from "react-router-dom";
+
 export default function CreateEvent(props) {
 
   let formInputs = {
+    "eventOrganizer": props.eventOrganizer,
     "eventName": props.eventName,
     "eventDate": props.eventDate,
     "eventStartTime": props.eventStartTime,
@@ -10,18 +13,20 @@ export default function CreateEvent(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    console.log(formInputs)
+    console.log(formInputs);
   }
   return (
     <div>
-      <h1>
-        Create your event!
-      </h1>
-      <h2>Your event id is {props.newEventId}</h2>
+      <h1>Your event id is {props.newEventId}</h1>
+      <h2>Enter Event Information</h2>
       <form onSubmit={onSubmit} noValidate>
         <div>
-        <label htmlFor="eventName">Name: </label>
-        <input type="text" name="eventName" defaultValue={props.eventName} onChange={e => props.setEventName(e.target.value)}/>
+          <label htmlFor="eventOrganizer">Your Name: </label>
+          <input type="text" name="eventOrganizer" defaultValue={props.eventOrganizer} onChange={e => props.setEventOrganizer(e.target.value)}/>
+        </div>
+        <div>
+          <label htmlFor="eventName">Event Name: </label>
+          <input type="text" name="eventName" defaultValue={props.eventName} onChange={e => props.setEventName(e.target.value)}/>
         </div>
         <div>
           <label htmlFor="eventDate">Date: </label>
@@ -41,6 +46,10 @@ export default function CreateEvent(props) {
         </div>
         <button type="submit">Create</button>
       </form>
+      {/* <Link to={"/view-eventId=" + props.newEventId}> */}
+      <Link to={"/view-event"}>
+        <button>View event</button>
+      </Link>
     </div>
   )
 }

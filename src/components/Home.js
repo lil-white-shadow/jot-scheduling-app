@@ -21,7 +21,7 @@ function Home(props) {
       <h1>Welcome to {props.title}</h1>
       <h2>Click below to schedule your next event!</h2>
       {/* <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button> */}
-      <Link to={"eventId=" + newEventId}>
+      <Link to={"create-eventId=" + newEventId}>
         <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button>
       </Link>
     </div>
