@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-function Home(props) {
+
+export default function Home(props) {
 
   function generateRandomId() {
     
@@ -19,14 +20,27 @@ function Home(props) {
   return ( 
     <div>
       <h1>Welcome to {props.title}</h1>
-      <h2>There are currently {props.currentEvents.length} events in progress on this service.</h2>
-      <h2>Click below to schedule your next event!</h2>
-      {/* <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button> */}
-      <Link to={"create-eventId=" + newEventId}>
-        <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button>
-      </Link>
+      <div>
+        <h2>There are currently {props.currentEvents.length} events in progress.</h2>
+        {
+          props.currentEvents.map(event =>
+            <div key={event.eventId}>
+              <h3>
+                {event.eventName} on {event.eventDate} by {event.eventOrganizer} [Id: {event.eventId}]
+              </h3>
+              <Link to={"/view-eventId=" + event.eventId}>
+                <button>View event</button>
+              </Link>
+            </div>
+          )
+        }
+      </div>
+      <div>
+        <h2>Click below to schedule your next event!</h2>
+        <Link to={"create-eventId=" + newEventId}>
+          <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button>
+        </Link>
+      </div>
     </div>
    );
 }
-
-export default Home;

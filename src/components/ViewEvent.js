@@ -1,7 +1,7 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function ViewEvent(props) {
-
   const [userName, setUserName] = useState('');
   const [availability, setAvailability] = useState(undefined);
   const [guestStatus, setGuestStatus] = useState('off');
@@ -20,7 +20,6 @@ export default function ViewEvent(props) {
     if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
       props.setAvailableUsers([...props.availableUsers, formInputs.userName])
     } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
-      console.log('guest in')
       props.setSpecialInvitees([...props.specialInvitees,formInputs.userName])
     } else {
       props.setUnavailableUsers([...props.unavailableUsers, formInputs.userName])
@@ -36,11 +35,11 @@ export default function ViewEvent(props) {
     <div>
       <h1>You've been invited!</h1>
       <div>
-        <h2>Event: {props.eventName}</h2>
-        <p>Date: {props.eventDate}</p>
-        <p>Time: {props.eventStartTime} - {props.eventEndTime}</p>
-        <p>Location: {props.eventLocation}</p>
-        <p>Organized by: {props.eventOrganizer}</p>
+        <h2>Event: {props.currentEvent.eventName}</h2>
+        <p>Date: {props.currentEvent.eventDate}</p>
+        <p>Time: {props.currentEvent.eventStartTime} - {props.currentEvent.eventEndTime}</p>
+        <p>Location: {props.currentEvent.eventLocation}</p>
+        <p>Organized by: {props.currentEvent.eventOrganizer}</p>
       </div>
       {
         !isFormSubmitted ? 
@@ -90,7 +89,9 @@ export default function ViewEvent(props) {
           }
         </ul>
       </div>
-
+      <Link to={"/"}>
+        <button>Return to home</button>
+      </Link>
     </div>
   )
 }

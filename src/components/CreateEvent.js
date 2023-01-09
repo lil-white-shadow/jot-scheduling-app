@@ -5,19 +5,23 @@ export default function CreateEvent(props) {
 
   const [isEventCreated, setIsEventCreated] = useState(false);
 
-  // let formInputs = {
-  //   "eventOrganizer": props.eventOrganizer,
-  //   "eventName": props.eventName,
-  //   "eventDate": props.eventDate,
-  //   "eventStartTime": props.eventStartTime,
-  //   "eventEndTime": props.eventEndTime,
-  //   "eventLocation": props.eventLocation
-  // }
+  const newEvent = {
+    "eventId": props.newEventId,
+    "eventOrganizer": 'Bhavin',
+    "eventName": 'Volleyball',
+    "eventDate": new Date().toLocaleDateString(),
+    "eventStartTime": '07:30',
+    "eventEndTime": '09:00',
+    "eventLocation": 'The Club at Prairie Stone, Hoffman Estates'
+  }
+
+  const [currentEvent, setCurrentEvent] = useState(newEvent);
 
   function onSubmit(e) {
     e.preventDefault();
-    props.setCurrentEvents([...props.currentEvents, props.newEventId]);
     setIsEventCreated(true);
+    props.setCurrentEvents([...props.currentEvents, currentEvent]);
+
   }
   return (
     <div>
@@ -29,36 +33,38 @@ export default function CreateEvent(props) {
         <form onSubmit={onSubmit} noValidate>
           <div>
             <label htmlFor="eventOrganizer">Your Name: </label>
-            <input type="text" name="eventOrganizer" defaultValue={props.eventOrganizer} onChange={e => props.setEventOrganizer(e.target.value)}/>
+            <input type="text" name="eventOrganizer" defaultValue={newEvent.eventOrganizer} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventOrganizer:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventName">Event Name: </label>
-            <input type="text" name="eventName" defaultValue={props.eventName} onChange={e => props.setEventName(e.target.value)}/>
+            <input type="text" name="eventName" defaultValue={newEvent.eventName} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventName:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventDate">Date: </label>
-            <input type="date" name="eventDate" defaultValue={props.eventDate} onChange={e => props.setEventDate(e.target.value)}/>
+            <input type="date" name="eventDate" defaultValue={newEvent.eventDate} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventDate:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventStartTime">Start: </label>
-            <input type="time" name="eventStartTime" defaultValue={props.eventStartTime} onChange={e => props.setEventStartTime(e.target.value)}/>
+            <input type="time" name="eventStartTime" defaultValue={newEvent.eventStartTime} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventStartTime:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventEndTime">End: </label>
-            <input type="time" name="eventEndTime" defaultValue={props.eventEndTime} onChange={e => props.setEventEndTime(e.target.value)}/>
+            <input type="time" name="eventEndTime" defaultValue={newEvent.eventEndTime} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventEndTime:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventLocation">Location: </label>
-            <input type="address" name="eventLocation" defaultValue={props.eventLocation} onChange={e => props.setEventLocation(e.target.value)}/>
+            <input type="address" name="eventLocation" defaultValue={newEvent.eventLocation} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventLocation:(e.target.value)}))}/>
           </div>
           <button type="submit">Create</button>
         </form>
       </div>
       : null
       }
-      {/* <Link to={"/view-eventId=" + props.newEventId}> */}
-      <Link to={"/view-event"}>
+      <Link to={"/view-eventId=" + props.newEventId}>
         <button>View event</button>
+      </Link>
+      <Link to={"/"}>
+        <button>Return to home</button>
       </Link>
       <div>{props.currentEvents.length}</div>
     </div>
