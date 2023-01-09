@@ -7,7 +7,7 @@ import './App.css';
 import { useState } from "react";
 
 export default function App() {
-  const title = "Doodle-but-Better";
+  const title = "Jot";
 
   const [newEventId, setNewEventId] = useState('');
 

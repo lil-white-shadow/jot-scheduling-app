@@ -18,8 +18,15 @@ export default function Home(props) {
   let newEventId = generateRandomId();
   
   return ( 
-    <div>
-      <h1>Welcome to {props.title}</h1>
+    <div className="Home">
+      <div className="logo">
+        {props.title}
+      <div className="tagline">Like doodle but better</div>
+      </div>
+      <div className="buttonGroup">
+        <button>View current events</button>
+        <button>Create new event</button>
+      </div>
       <div>
         <h2>There are currently {props.currentEvents.length} events in progress.</h2>
         {

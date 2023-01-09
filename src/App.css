@@ -1,18 +1,65 @@
 /* Color theme & max width variables */
 :root {
-  --primary: #1565C0;
-  --secondary: #E6EFF8;
-  --tertiary: #ffffff;
+  --primary: #FF3C38;
+  --secondary: #FFF275;
+  --accent: #FF8C42;
   --max-width: 1086px;
 }
 
 .App {
-  border: 3px solid red;
   min-height: 100vh;
+  width: 100vw;
   background-color: var(--secondary);
+  color: var(--primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: max(20vw, 5.5rem);
+  font-family: 'Pacifico', cursive;
+  font-family: 'Permanent Marker', cursive;
+  align-self: center;
+}
+
+.tagline {
+  font-size: max(3.5vw, 1rem);
+  font-family: 'Pacifico', cursive;
+  align-self: center;
+  text-align: center;
+  margin-top: -7vw;
+  margin-bottom: 2rem;
+  
+}
+
+.buttonGroup {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.App a, .App button {
   color: var(--primary);
 }
 
-.App a {
-  color: var(--primary);
+.App button {
+  border: 1px solid var(--primary);
+  box-shadow: 3px 3px 0px var(--primary);
+}
+
+.App button:hover {
+  box-shadow: 4.5px 3px 0px var(--primary);
+  transform: translate(-1.5px, 0px);
+}
+
+.App button:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
 }
