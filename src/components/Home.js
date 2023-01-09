@@ -19,6 +19,7 @@ function Home(props) {
   return ( 
     <div>
       <h1>Welcome to {props.title}</h1>
+      <h2>There are currently {props.currentEvents.length} events in progress on this service.</h2>
       <h2>Click below to schedule your next event!</h2>
       {/* <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button> */}
       <Link to={"create-eventId=" + newEventId}>

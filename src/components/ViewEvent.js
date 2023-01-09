@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 export default function ViewEvent(props) {
 
@@ -36,7 +36,7 @@ export default function ViewEvent(props) {
     <div>
       <h1>You've been invited!</h1>
       <div>
-        <p>Event: {props.eventName}</p>
+        <h2>Event: {props.eventName}</h2>
         <p>Date: {props.eventDate}</p>
         <p>Time: {props.eventStartTime} - {props.eventEndTime}</p>
         <p>Location: {props.eventLocation}</p>

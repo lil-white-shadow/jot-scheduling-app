@@ -9,7 +9,9 @@ import { useState } from "react";
 export default function App() {
   const title = "Doodle-but-Better";
 
+  // dev controls
   const [newEventId, setNewEventId] = useState('');
+  const [currentEvents, setCurrentEvents] = useState([]);
 
   // admin inputs
   const [eventOrganizer, setEventOrganizer] = useState('Bhavin');
@@ -28,12 +30,12 @@ export default function App() {
     <div>
     <BrowserRouter>
       <Routes>
-          <Route path="/" element={<Home title={title} setNewEventId={setNewEventId}/>} />
+          <Route path="/" element={<Home title={title} setNewEventId={setNewEventId} currentEvents={currentEvents}/>} />
           <Route
           /*  path={"create-eventId=" + newEventId} */
           // temp route for dev
            path="create-event"
-           element={<CreateEvent newEventId={newEventId} eventOrganizer={eventOrganizer} setEventOrganizer={setEventOrganizer} eventName={eventName} setEventName={setEventName} eventDate={eventDate} setEventDate={setEventDate} eventStartTime={eventStartTime} setEventStartTime={setEventStartTime} eventEndTime={eventEndTime} setEventEndTime={setEventEndTime} eventLocation={eventLocation} setEventLocation={setEventLocation}/>} />
+           element={<CreateEvent currentEvents={currentEvents} setCurrentEvents={setCurrentEvents} newEventId={newEventId} eventOrganizer={eventOrganizer} setEventOrganizer={setEventOrganizer} eventName={eventName} setEventName={setEventName} eventDate={eventDate} setEventDate={setEventDate} eventStartTime={eventStartTime} setEventStartTime={setEventStartTime} eventEndTime={eventEndTime} setEventEndTime={setEventEndTime} eventLocation={eventLocation} setEventLocation={setEventLocation}/>} />
           <Route
           /*  path={"view-eventId=" + newEventId} */
           // temp route for dev
