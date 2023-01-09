@@ -14,7 +14,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Home title={title} setNewEventId={setNewEventId}/>} />
-          <Route path="event" element={<CreateEvent title={title} newEventId={newEventId}/>} />
+          <Route path={"eventId=" + newEventId} element={<CreateEvent title={title} newEventId={newEventId}/>} />
       </Routes>
     </BrowserRouter>
     <div>Parent: {newEventId}</div>
