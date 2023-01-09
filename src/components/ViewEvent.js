@@ -52,8 +52,8 @@ export default function ViewEvent(props) {
           </div>
           <div>
             <label htmlFor="availability">Are you available: </label>
-            <select name="availability" onChange={e => setAvailability(e.target.value)}>
-              <option disabled selected>Select</option>
+            <select name="availability" onChange={e => setAvailability(e.target.value)} defaultValue="">
+              <option disabled value="">Select</option>
               <option value="Yes">Yes</option>
               <option value="No">No</option>
             </select>
