@@ -95,13 +95,6 @@ button.returnHomeWrapper {
 button.returnHomeWrapper:hover {
   box-shadow: none;
   transform: none;
-  /* background-color: var(--primary);
-}
-
-button.returnHomeWrapper:hover a {
-  box-shadow: none;
-  transform: none;
-  /* color: var(--secondary); */
 }
 
 
