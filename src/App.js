@@ -19,9 +19,9 @@ export default function App() {
   const [currentEvents, setCurrentEvents] = useState([]);
 
   // user inputs
-  const [availableUsers, setAvailableUsers] = useState([]);
-  const [unavailableUsers, setUnavailableUsers] = useState([]);
-  const [specialInvitees, setSpecialInvitees] = useState([]);
+  // const [availableUsers, setAvailableUsers] = useState([]);
+  // const [unavailableUsers, setUnavailableUsers] = useState([]);
+  // const [specialInvitees, setSpecialInvitees] = useState([]);
 
   return (
     <div className="App">
@@ -45,7 +45,9 @@ export default function App() {
             currentEvents.map(event => 
               <Route key={event.eventId}
                 path={"view-eventId=" + event.eventId}
-                element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]} availableUsers={availableUsers} setAvailableUsers={setAvailableUsers} unavailableUsers={unavailableUsers} setUnavailableUsers={setUnavailableUsers} specialInvitees={specialInvitees} setSpecialInvitees={setSpecialInvitees} />}
+                element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]}
+                // availableUsers={availableUsers} setAvailableUsers={setAvailableUsers} unavailableUsers={unavailableUsers} setUnavailableUsers={setUnavailableUsers} specialInvitees={specialInvitees} setSpecialInvitees={setSpecialInvitees}
+              />}
               />
             )
           }

@@ -5,6 +5,10 @@ export default function ViewEvent(props) {
   const [availability, setAvailability] = useState(undefined);
   const [guestStatus, setGuestStatus] = useState('off');
 
+  const [availableUsers, setAvailableUsers] = useState([]);
+  const [specialInvitees, setSpecialInvitees] = useState([]);
+  const [unavailableUsers, setUnavailableUsers] = useState([]);
+
   const [isFormValid, setIsFormValid] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
@@ -20,13 +24,26 @@ export default function ViewEvent(props) {
 
     if(formInputs.userName !== '' && formInputs.availability !== undefined) {
       setIsFormValid(true);
-      
-      if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
-        props.setAvailableUsers([...props.availableUsers, formInputs.userName])
+
+      let availableArray = availableUsers.filter(name => name !== formInputs.userName.toUpperCase());
+      let specialInviteesArray = specialInvitees.filter(name => name !== formInputs.userName.toUpperCase());
+      let unavailableArray = unavailableUsers.filter(name => name !== formInputs.userName.toUpperCase());
+
+      if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off' && formInputs.userName.toUpperCase) {
+
+        setAvailableUsers([...availableArray, formInputs.userName.toUpperCase()]);
+        setSpecialInvitees([...specialInviteesArray]);
+        setUnavailableUsers([...unavailableArray]);
+
       } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
-        props.setSpecialInvitees([...props.specialInvitees,formInputs.userName])
+        
+        setAvailableUsers([...availableArray]);
+        setSpecialInvitees([...specialInviteesArray,formInputs.userName.toUpperCase()])
+        setUnavailableUsers([...unavailableArray]);
       } else {
-        props.setUnavailableUsers([...props.unavailableUsers, formInputs.userName])
+        setAvailableUsers([...availableArray]);
+        setSpecialInvitees([...specialInviteesArray]);
+        setUnavailableUsers([...unavailableArray, formInputs.userName.toUpperCase()])
       }
   
       setUserName('');
@@ -97,13 +114,13 @@ export default function ViewEvent(props) {
       </div>
       }
       <div className="card">
-        <h2>{props.availableUsers.length} members & {props.specialInvitees.length} guest(s)</h2>
+        <h2>{availableUsers.length} members & {specialInvitees.length} guest(s)</h2>
         <div className="cardLineGroup">
           <div className="cardLine cardLineVertical">
             <div className="cardLineTitle">Members: </div>
             <ul>
             {
-              props.availableUsers.map(user => <li key={user}>{user}</li>)
+              availableUsers.map(user => <li key={user}>{user}</li>)
             }
             </ul>
           </div>
@@ -111,7 +128,7 @@ export default function ViewEvent(props) {
             <div className="cardLineTitle">Guests: </div>
             <ul>
               {
-                props.specialInvitees.map(user => <li key={user}>{user}</li>)
+                specialInvitees.map(user => <li key={user}>{user}</li>)
               }
             </ul>
           </div>
@@ -119,7 +136,7 @@ export default function ViewEvent(props) {
             <div className="cardLineTitle">Unavailable: </div>
             <ul>
               {
-                props.unavailableUsers.map(user => <li key={user}>{user}</li>)
+                unavailableUsers.map(user => <li key={user}>{user}</li>)
               }
             </ul>
           </div>
