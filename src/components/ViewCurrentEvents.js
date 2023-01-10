@@ -3,12 +3,6 @@ import { Link } from "react-router-dom";
 export default function ViewCurrrentEvents(props) {
   return (
   <div>
-      <button className="returnHomeWrapper">
-        <span>
-          &#8592;
-        </span>
-        <Link to={"/"}>Return home</Link>
-      </button>
       <h2>There are currently {props.currentEvents.length} events in progress.</h2>
       {
         props.currentEvents.map(event =>

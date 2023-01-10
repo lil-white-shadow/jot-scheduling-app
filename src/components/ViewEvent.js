@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
 
 export default function ViewEvent(props) {
   const [userName, setUserName] = useState('');
@@ -33,12 +32,6 @@ export default function ViewEvent(props) {
   }
   return(
     <div>
-      <button className="returnHomeWrapper">
-        <span>
-          &#8592;
-        </span>
-        <Link to={"/"}>Return home</Link>
-      </button>
       <h1>You've been invited!</h1>
       <div>
         <h2>Event: {props.currentEvent.eventName}</h2>

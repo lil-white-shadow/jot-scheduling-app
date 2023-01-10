@@ -90,6 +90,7 @@ button.returnHomeWrapper {
   display: flex;
   gap: 5px;
   box-shadow: none;
+  width: fit-content;
 }
 
 button.returnHomeWrapper:hover {

@@ -25,12 +25,6 @@ export default function CreateEvent(props) {
   }
   return (
     <div>
-      <button className="returnHomeWrapper">
-        <span>
-          &#8592;
-        </span>
-        <Link to={"/"}>Return home</Link>
-      </button>
       {
         !isEventCreated ?
         <div>
