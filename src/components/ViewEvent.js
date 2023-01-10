@@ -51,11 +51,6 @@ export default function ViewEvent(props) {
           <div className="cardLineTitle">Host: </div>
           <div className="cardLineContent">{props.currentEvent.eventOrganizer}</div>
         </div>
-        {/* <h2>Event: {props.currentEvent.eventName}</h2>
-        <p><span className="viewEvent__label">Date: </span>{props.currentEvent.eventDate}</p>
-        <p><span className="viewEvent__label">Time: </span> {props.currentEvent.eventStartTime} - {props.currentEvent.eventEndTime}</p>
-        <p><span className="viewEvent__label">Location: </span> {props.currentEvent.eventLocation}</p>
-        <p><span className="viewEvent__label">Host: </span> {props.currentEvent.eventOrganizer}</p> */}
       </div>
       {
         !isFormSubmitted ? 
@@ -81,7 +76,12 @@ export default function ViewEvent(props) {
           <button type="submit">Submit</button>
         </form>
       </div>
-      : null
+      : <div>
+        <h2>You're registered!</h2>
+        <div>
+          Click <span onClick={() => setIsFormSubmitted(false)} style={{textDecoration: "underline", cursor:"pointer"}}>here</span> to RSVP for someone else.
+        </div>
+      </div>
       }
       <div className="card">
         <h2>{props.availableUsers.length} members & {props.specialInvitees.length} guest(s)</h2>
