@@ -17,7 +17,6 @@ export default function App() {
 
   // all events
   const [currentEvents, setCurrentEvents] = useState([]);
-  console.log(currentEvents);
 
   // user inputs
   const [availableUsers, setAvailableUsers] = useState([]);
@@ -28,7 +27,6 @@ export default function App() {
     <div className="App">
     {/* <Header title={title} tagline={tagline} /> */}
     <BrowserRouter>
-      {console.log(window.location.pathname)}
       <Routes>
         <Route
           index
