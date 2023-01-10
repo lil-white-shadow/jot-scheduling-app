@@ -38,6 +38,8 @@
 .App button {
   border: 1px solid var(--primary);
   box-shadow: 3px 3px 0px var(--primary);
+  width: fit-content;
+  padding: 0.2rem 1rem;
 }
 
 .App button:hover {
@@ -163,13 +165,36 @@ button.returnHomeWrapper:hover {
 .viewEventCard {
   display: flex;
   flex-direction: column;
+  gap: 0.5rem;
 }
 
 .cardLine {
   display: flex;
-  flex-wrap: wrap;
+  gap: 1.5rem;
 }
 
 .cardLineTitle {
   font-weight: 700;
+  width: 65px;
+}
+
+.viewEventCard input[type='text'] {
+  width: 150px;
+}
+
+/* .viewEventCard:last-of-type .cardLine {
+  flex-direction: column;
+} */
+
+.cardLineGroup {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.cardLineGroup .cardLine {
+  display: flex;
+  flex-direction: column;
+  min-width: 150px;
+  gap: 0.5rem;
 }
