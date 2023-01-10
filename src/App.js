@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CreateEvent from "./components/CreateEvent";
 import ViewEvent from "./components/ViewEvent";
+import ViewCurrentEvents from "./components/ViewCurrentEvents";
 
 import './App.css';
 import { useState } from "react";
@@ -26,10 +27,16 @@ export default function App() {
       <Routes>
           <Route
            path="/"
-           element={<Home title={title} setNewEventId={setNewEventId} currentEvents={currentEvents}/>} />
+           element={<Home title={title} setNewEventId={setNewEventId} currentEvents={currentEvents}/>}
+          />
           <Route
             path={"create-eventId=" + newEventId}
-            element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>} />
+            element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
+          />
+          <Route
+            path={"view-current-events"}
+            element={<ViewCurrentEvents currentEvents={currentEvents}/>}
+          />
           {
             currentEvents.map(event => 
               <Route key={event.eventId}

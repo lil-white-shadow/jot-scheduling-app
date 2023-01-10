@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 
-
 export default function Home(props) {
 
   function generateRandomId() {
@@ -24,31 +23,14 @@ export default function Home(props) {
       <div className="tagline">Like doodle but better</div>
       </div>
       <div className="buttonGroup">
-        <button>View current events</button>
-        <button>Create new event</button>
-      </div>
-      <div>
-        <h2>There are currently {props.currentEvents.length} events in progress.</h2>
-        {
-          props.currentEvents.map(event =>
-            <div key={event.eventId}>
-              <span>
-                <Link to={"/view-eventId=" + event.eventId}>{event.eventId}</Link>
-              </span>
-              <span>
-               : {event.eventName} on {event.eventDate} by {event.eventOrganizer}
-              </span>
-
-            </div>
-          )
-        }
-      </div>
-      <div>
-        <h2>Click below to schedule a new event.</h2>
+        <Link to={"view-current-events"}>
+          <button>View Current Events</button>
+        </Link>
         <Link to={"create-eventId=" + newEventId}>
-          <button onClick={() => {props.setNewEventId(newEventId)}}>Get started</button>
+          <button onClick={() => {props.setNewEventId(newEventId)}}>Create New Event</button>
         </Link>
       </div>
+
     </div>
    );
 }
