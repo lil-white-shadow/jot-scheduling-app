@@ -59,6 +59,7 @@
   width: fit-content;
   max-width: 500px;
   border-radius: 10px;
+  box-shadow: 3px 3px 3px green;
 }
 
 .App .feedback a {
