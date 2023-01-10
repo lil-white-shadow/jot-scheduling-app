@@ -43,14 +43,14 @@ export default function ViewEvent(props) {
       {
         !isFormSubmitted ? 
         <div>
-        <h2>Please enter your name and availability below.</h2>
+        <h2>Are you attending?</h2>
         <form onSubmit={onSubmit} noValidate>
           <div>
             <label htmlFor="userName">Name: </label>
             <input type="text" name="userName" onChange={e => setUserName(e.target.value)}/>
           </div>
           <div>
-            <label htmlFor="availability">Are you available: </label>
+            <label htmlFor="availability">Availability: </label>
             <select name="availability" onChange={e => setAvailability(e.target.value)} defaultValue="">
               <option disabled value="">Select</option>
               <option value="Yes">Yes</option>
@@ -58,7 +58,7 @@ export default function ViewEvent(props) {
             </select>
           </div>
           <div>
-            <label htmlFor="guestStatus">Are you a guest?: </label>
+            <label htmlFor="guestStatus">Guest?: </label>
             <input type="checkbox" name="guestStatus" onChange={e => setGuestStatus(e.target.value)}/>
           </div>
           <button type="submit">Submit</button>
@@ -67,21 +67,21 @@ export default function ViewEvent(props) {
       : null
       }
 
-      <h2>Who is going --&gt; {props.availableUsers.length} members & {props.specialInvitees.length} guest(s)</h2>
+      <h2>{props.availableUsers.length} members & {props.specialInvitees.length} guest(s)</h2>
       <div>
-        <h4>Available Members: </h4>
+        <h4>Members: </h4>
         <ul>
         {
           props.availableUsers.map(user => <li key={user}>{user}</li>)
         }
         </ul>
-        <h4>Special Guests:</h4>
+        <h4>Guests:</h4>
         <ul>
           {
             props.specialInvitees.map(user => <li key={user}>{user}</li>)
           }
         </ul>
-        <h4>Unavailable Members / Invitees: </h4>
+        <h4>Unavailable: </h4>
         <ul>
           {
             props.unavailableUsers.map(user => <li key={user}>{user}</li>)
