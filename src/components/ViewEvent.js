@@ -76,8 +76,8 @@ export default function ViewEvent(props) {
           <button type="submit">Submit</button>
         </form>
       </div>
-      : <div>
-        <h2>You're registered!</h2>
+      : <div className="feedback">
+        <h2>You're registered &#10004;</h2>
         <div>
           Click <span onClick={() => setIsFormSubmitted(false)} style={{textDecoration: "underline", cursor:"pointer"}}>here</span> to RSVP for someone else.
         </div>
@@ -86,7 +86,7 @@ export default function ViewEvent(props) {
       <div className="card">
         <h2>{props.availableUsers.length} members & {props.specialInvitees.length} guest(s)</h2>
         <div className="cardLineGroup">
-          <div className="cardLine">
+          <div className="cardLine cardLineVertical">
             <div className="cardLineTitle">Members: </div>
             <ul>
             {
@@ -94,7 +94,7 @@ export default function ViewEvent(props) {
             }
             </ul>
           </div>
-          <div className="cardLine">
+          <div className="cardLine cardLineVertical">
             <div className="cardLineTitle">Guests: </div>
             <ul>
               {
@@ -102,7 +102,7 @@ export default function ViewEvent(props) {
               }
             </ul>
           </div>
-          <div className="cardLine">
+          <div className="cardLine cardLineVertical">
             <div className="cardLineTitle">Unavailable: </div>
             <ul>
               {

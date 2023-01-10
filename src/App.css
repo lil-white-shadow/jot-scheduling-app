@@ -52,6 +52,19 @@
   transform: translate(2px, 2px);
 }
 
+.App .feedback {
+  background-color: white;
+  color: green;
+  padding: 15px;
+  width: fit-content;
+  max-width: 500px;
+  border-radius: 10px;
+}
+
+.App .feedback a {
+  color: green;
+}
+
 /* Header */
 
 .Header {
@@ -194,6 +207,10 @@ button.returnHomeWrapper:hover {
   flex-direction: column;
   min-width: 150px;
   gap: 0.5rem;
+}
+
+.cardLineGroup .cardLineVertical {
+  align-items: flex-start;
 }
 
 /* main - ViewCurrentEvents */
