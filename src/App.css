@@ -162,7 +162,7 @@ button.returnHomeWrapper:hover {
 
 /* main - ViewEvent */
 
-.viewEventCard {
+.card {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
@@ -178,13 +178,9 @@ button.returnHomeWrapper:hover {
   width: 65px;
 }
 
-.viewEventCard input[type='text'] {
+.card input[type='text'] {
   width: 150px;
 }
-
-/* .viewEventCard:last-of-type .cardLine {
-  flex-direction: column;
-} */
 
 .cardLineGroup {
   display: flex;

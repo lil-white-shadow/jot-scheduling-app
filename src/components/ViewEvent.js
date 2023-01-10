@@ -33,7 +33,7 @@ export default function ViewEvent(props) {
   return(
     <div className="main main__ViewEvent">
       <h1>You've been invited!</h1>
-      <div className="viewEventCard">
+      <div className="card">
         <h2>Event: {props.currentEvent.eventName}</h2>
         <div className="cardLine">
           <div className="cardLineTitle">Date: </div>
@@ -60,7 +60,7 @@ export default function ViewEvent(props) {
       {
         !isFormSubmitted ? 
         <div>
-        <form className="viewEventCard" onSubmit={onSubmit} noValidate>
+        <form className="card" onSubmit={onSubmit} noValidate>
           <h2>Are you attending?</h2>
           <div className="cardLine">
             <label htmlFor="userName" className="cardLineTitle">Name: </label>
@@ -83,7 +83,7 @@ export default function ViewEvent(props) {
       </div>
       : null
       }
-      <div className="viewEventCard">
+      <div className="card">
         <h2>{props.availableUsers.length} members & {props.specialInvitees.length} guest(s)</h2>
         <div className="cardLineGroup">
           <div className="cardLine">
