@@ -59,8 +59,9 @@ export default function CreateEvent(props) {
       </div>
       :
       <div>
-        <span>Your event is successfully and your event id is {props.newEventId}. Click </span>
-        <Link to={"/view-eventId=" + props.newEventId}>here</Link>
+        <h1>Success!</h1>
+        <span>Your event is created with event id <span style={{fontWeight: "700"}}>{props.newEventId}</span>. Click </span>
+        <Link to={"/view-eventId=" + props.newEventId} style={{textDecoration: "underline"}}>here</Link>
         <span> to view your event.</span>
       </div>
       }
