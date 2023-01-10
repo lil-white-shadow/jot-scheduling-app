@@ -24,7 +24,7 @@ export default function CreateEvent(props) {
 
   }
   return (
-    <div>
+    <div className="main main__CreateEvent">
       {
         !isEventCreated ?
         <div>

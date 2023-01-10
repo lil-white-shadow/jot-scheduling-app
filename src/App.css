@@ -50,6 +50,8 @@
   transform: translate(2px, 2px);
 }
 
+/* Header */
+
 .Header {
   width: 100%;
   max-width: var(--max-width);
@@ -98,7 +100,6 @@ button.returnHomeWrapper:hover {
   transform: none;
 }
 
-
 .returnHomeWrapper span {
   scale: 1.7;
   position: relative;
@@ -108,4 +109,42 @@ button.returnHomeWrapper:hover {
 
 .returnHomeWrapper:hover span {
   display: inline;
+}
+
+/* main */
+
+.main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.main h1 {
+  font-size: min(2rem, 7.5vw);
+}
+
+/* main - CreateEvent component */
+
+.main__CreateEvent {
+  align-items: center;
+}
+
+.main__CreateEvent form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.main__CreateEvent form>div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.main__CreateEvent form button {
+  width: 50%;
+  align-self: center;
+  margin-top: 1rem;
 }

@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function ViewCurrrentEvents(props) {
   return (
-  <div>
+  <div className="main main__ViewCurrentEvents">
       <h2>There are currently {props.currentEvents.length} events in progress.</h2>
       {
         props.currentEvents.map(event =>

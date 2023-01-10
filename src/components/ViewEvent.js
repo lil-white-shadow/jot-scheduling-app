@@ -31,7 +31,7 @@ export default function ViewEvent(props) {
     setIsFormSubmitted(true);
   }
   return(
-    <div>
+    <div className="main main__ViewEvent">
       <h1>You've been invited!</h1>
       <div>
         <h2>Event: {props.currentEvent.eventName}</h2>
