@@ -5,6 +5,7 @@ export default function ViewEvent(props) {
   const [availability, setAvailability] = useState(undefined);
   const [guestStatus, setGuestStatus] = useState('off');
 
+  const [isFormValid, setIsFormValid] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
   let formInputs = {
@@ -15,20 +16,26 @@ export default function ViewEvent(props) {
   
   function onSubmit(e) {
     e.preventDefault();
-
-    if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
-      props.setAvailableUsers([...props.availableUsers, formInputs.userName])
-    } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
-      props.setSpecialInvitees([...props.specialInvitees,formInputs.userName])
-    } else {
-      props.setUnavailableUsers([...props.unavailableUsers, formInputs.userName])
-    }
-
-    setUserName('');
-    setAvailability(undefined);
-    setGuestStatus('off');
-
     setIsFormSubmitted(true);
+
+    if(formInputs.userName !== '' && formInputs.availability !== undefined) {
+      setIsFormValid(true);
+      
+      if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
+        props.setAvailableUsers([...props.availableUsers, formInputs.userName])
+      } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
+        props.setSpecialInvitees([...props.specialInvitees,formInputs.userName])
+      } else {
+        props.setUnavailableUsers([...props.unavailableUsers, formInputs.userName])
+      }
+  
+      setUserName('');
+      setAvailability(undefined);
+      setGuestStatus('off');
+      
+      } else {
+        setIsFormValid(false);
+      }
   }
   return(
     <div className="main main__ViewEvent">
@@ -53,7 +60,7 @@ export default function ViewEvent(props) {
         </div>
       </div>
       {
-        !isFormSubmitted ? 
+        !isFormSubmitted || !isFormValid ? 
         <div>
         <form className="card" onSubmit={onSubmit} noValidate>
           <h2>Are you attending?</h2>
@@ -73,7 +80,13 @@ export default function ViewEvent(props) {
             <label htmlFor="guestStatus" className="cardLineTitle">Guest?: </label>
             <input type="checkbox" name="guestStatus" onChange={e => setGuestStatus(e.target.value)}/>
           </div>
-          <button type="submit">Submit</button>
+          <div className="cardLine">
+            <button type="submit">Submit</button></div>
+            {
+              !isFormValid && isFormSubmitted ?
+              <span style={{fontWeight: "700", textDecoration: "underline"}}>Error! You must enter your name & availability.</span>
+              : null
+            }
         </form>
       </div>
       : <div className="feedback">
