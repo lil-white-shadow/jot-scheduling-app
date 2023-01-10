@@ -4,7 +4,7 @@ export default function Home(props) {
 
   function generateRandomId() {
     
-    let id = Math.floor(Math.random() * 100000 + 10000);
+    let id = Math.floor(Math.random() * 100 + 100);
     
     for (var i = 0; i < 5; i++) {
       let chars = "abcdefghijklmnopqrstuvwxyz0123456789";
