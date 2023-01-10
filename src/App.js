@@ -6,7 +6,7 @@ import ViewCurrentEvents from "./components/ViewCurrentEvents";
 
 import './App.css';
 import { useState } from "react";
-import Header from "./components/Header";
+import Layout from "./components/Layout";
 
 export default function App() {
 
@@ -26,29 +26,33 @@ export default function App() {
 
   return (
     <div className="App">
-    <Header title={title} tagline={tagline} />
+    {/* <Header title={title} tagline={tagline} /> */}
     <BrowserRouter>
+      {console.log(window.location.pathname)}
       <Routes>
         <Route
-          path="/"
+          index
           element={<Home title={title} tagline={tagline} setNewEventId={setNewEventId} currentEvents={currentEvents}/>}
         />
-        <Route
-          path={"create-eventId=" + newEventId}
-          element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
-        />
-        <Route
-          path={"view-current-events"}
-          element={<ViewCurrentEvents currentEvents={currentEvents}/>}
-        />
-        {
-          currentEvents.map(event => 
-            <Route key={event.eventId}
-              path={"view-eventId=" + event.eventId}
-              element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]} availableUsers={availableUsers} setAvailableUsers={setAvailableUsers} unavailableUsers={unavailableUsers} setUnavailableUsers={setUnavailableUsers} specialInvitees={specialInvitees} setSpecialInvitees={setSpecialInvitees} />}
-            />
-          )
-        }
+        <Route path="/" element={<Layout title={title}/>}>
+          <Route
+            path={"create-eventId=" + newEventId}
+            element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
+          />
+          <Route
+            path={"view-current-events"}
+            element={<ViewCurrentEvents currentEvents={currentEvents}/>}
+          />
+          {
+            currentEvents.map(event => 
+              <Route key={event.eventId}
+                path={"view-eventId=" + event.eventId}
+                element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]} availableUsers={availableUsers} setAvailableUsers={setAvailableUsers} unavailableUsers={unavailableUsers} setUnavailableUsers={setUnavailableUsers} specialInvitees={specialInvitees} setSpecialInvitees={setSpecialInvitees} />}
+              />
+            )
+          }
+          {/* <Route path="*" element={<PageNotFound />} /> */}
+        </Route>
       </Routes>
     </BrowserRouter>
     </div>

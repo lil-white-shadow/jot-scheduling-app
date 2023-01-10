@@ -55,6 +55,7 @@
   max-width: var(--max-width);
   height: fit-content;
   display: flex;
+  flex-direction: column;
   margin-bottom: 2rem;
 }
 
@@ -77,7 +78,7 @@
 }
 
 .tagline {
-  font-size: max(4vw, 1.8rem);
+  font-size: max(4vw, 1.75rem);
   font-family: 'Pacifico', cursive;
   align-self: center;
   text-align: center;
