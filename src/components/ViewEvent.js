@@ -33,7 +33,12 @@ export default function ViewEvent(props) {
   }
   return(
     <div>
-      <Link to={"/"}>Return home</Link>
+      <button className="returnHomeWrapper">
+        <span>
+          &#8592;
+        </span>
+        <Link to={"/"}>Return home</Link>
+      </button>
       <h1>You've been invited!</h1>
       <div>
         <h2>Event: {props.currentEvent.eventName}</h2>

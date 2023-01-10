@@ -85,3 +85,33 @@
   margin-top: min(-40px, -7vw);
   margin-bottom: 2rem;
 }
+
+button.returnHomeWrapper {
+  display: flex;
+  gap: 5px;
+  box-shadow: none;
+}
+
+button.returnHomeWrapper:hover {
+  box-shadow: none;
+  transform: none;
+  /* background-color: var(--primary);
+}
+
+button.returnHomeWrapper:hover a {
+  box-shadow: none;
+  transform: none;
+  /* color: var(--secondary); */
+}
+
+
+.returnHomeWrapper span {
+  scale: 1.7;
+  position: relative;
+  top: -5px;
+  display: none;
+}
+
+.returnHomeWrapper:hover span {
+  display: inline;
+}
