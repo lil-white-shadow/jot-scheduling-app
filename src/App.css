@@ -7,7 +7,7 @@
 }
 
 #root {
-  width: 100vw;
+  width: 100%;
   background-color: var(--secondary);
   color: var(--primary);
   display: flex;
@@ -118,6 +118,7 @@ button.returnHomeWrapper:hover {
   flex-direction: column;
   width: 100%;
   margin-top: 2rem;
+  gap: 1rem;
 }
 
 .main h1 {
@@ -132,7 +133,7 @@ button.returnHomeWrapper:hover {
   font-weight: 100;
 }
 
-/* main - CreateEvent component */
+/* main - CreateEvent */
 
 .main__CreateEvent {
   align-items: center;
@@ -155,4 +156,20 @@ button.returnHomeWrapper:hover {
   width: 50%;
   align-self: center;
   margin-top: 1rem;
+}
+
+/* main - ViewEvent */
+
+.viewEventCard {
+  display: flex;
+  flex-direction: column;
+}
+
+.cardLine {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cardLineTitle {
+  font-weight: 700;
 }
