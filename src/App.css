@@ -64,7 +64,7 @@
 }
 
 .headerLogo {
-  font-size: max(10vw, 5rem);
+  font-size: max(6vw, 5rem);
   font-family: 'Pacifico', cursive;
   font-family: 'Permanent Marker', cursive;
   display: flex;
@@ -171,11 +171,12 @@ button.returnHomeWrapper:hover {
 .cardLine {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
 }
 
 .cardLineTitle {
   font-weight: 700;
-  width: 65px;
+  min-width: 85px;
 }
 
 .card input[type='text'] {
@@ -193,4 +194,47 @@ button.returnHomeWrapper:hover {
   flex-direction: column;
   min-width: 150px;
   gap: 0.5rem;
+}
+
+/* main - ViewCurrentEvents */
+
+.main__ViewCurrentEvents .cardLineGroup {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2rem;
+  max-width: 600px;
+  margin-top: 1rem;
+}
+
+.main__ViewCurrentEvents .cardLineGroup .cardLine {
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.main__ViewCurrentEvents .cardLineTitle {
+  width: min(100%, 360px);
+}
+
+.main__ViewCurrentEvents button.goToButton {
+  box-shadow: none;
+  transform: none;
+}
+
+.goToButton a {
+  display: flex;
+}
+
+.goToButton .goToArrow {
+  rotate: 270deg;
+  scale: 1.25;
+  display: none;
+}
+
+.goToButton:hover .goToArrow {
+  rotate: 270deg;
+  scale: 1.15;
+  display: block;
+  font-weight: 100;
 }
