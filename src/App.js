@@ -6,9 +6,12 @@ import ViewCurrentEvents from "./components/ViewCurrentEvents";
 
 import './App.css';
 import { useState } from "react";
+import Header from "./components/Header";
 
 export default function App() {
+
   const title = "Jot";
+  const tagline = "Like doodle but better";
 
   const [newEventId, setNewEventId] = useState('');
 
@@ -23,28 +26,29 @@ export default function App() {
 
   return (
     <div className="App">
+    <Header title={title} tagline={tagline} />
     <BrowserRouter>
       <Routes>
-          <Route
-           path="/"
-           element={<Home title={title} setNewEventId={setNewEventId} currentEvents={currentEvents}/>}
-          />
-          <Route
-            path={"create-eventId=" + newEventId}
-            element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
-          />
-          <Route
-            path={"view-current-events"}
-            element={<ViewCurrentEvents currentEvents={currentEvents}/>}
-          />
-          {
-            currentEvents.map(event => 
-              <Route key={event.eventId}
-                path={"view-eventId=" + event.eventId}
-                element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]} availableUsers={availableUsers} setAvailableUsers={setAvailableUsers} unavailableUsers={unavailableUsers} setUnavailableUsers={setUnavailableUsers} specialInvitees={specialInvitees} setSpecialInvitees={setSpecialInvitees} />}
-               />
-            )
-          }
+        <Route
+          path="/"
+          element={<Home title={title} tagline={tagline} setNewEventId={setNewEventId} currentEvents={currentEvents}/>}
+        />
+        <Route
+          path={"create-eventId=" + newEventId}
+          element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
+        />
+        <Route
+          path={"view-current-events"}
+          element={<ViewCurrentEvents currentEvents={currentEvents}/>}
+        />
+        {
+          currentEvents.map(event => 
+            <Route key={event.eventId}
+              path={"view-eventId=" + event.eventId}
+              element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]} availableUsers={availableUsers} setAvailableUsers={setAvailableUsers} unavailableUsers={unavailableUsers} setUnavailableUsers={setUnavailableUsers} specialInvitees={specialInvitees} setSpecialInvitees={setSpecialInvitees} />}
+            />
+          )
+        }
       </Routes>
     </BrowserRouter>
     </div>

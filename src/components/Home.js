@@ -20,7 +20,7 @@ export default function Home(props) {
     <div className="Home">
       <div className="logo">
         {props.title}
-      <div className="tagline">Like doodle but better</div>
+      <div className="tagline">{props.tagline}</div>
       </div>
       <div className="buttonGroup">
         <Link to={"view-current-events"}>

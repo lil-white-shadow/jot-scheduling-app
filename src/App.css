@@ -6,37 +6,22 @@
   --max-width: 1086px;
 }
 
-.App {
-  min-height: 100vh;
+#root {
   width: 100vw;
   background-color: var(--secondary);
   color: var(--primary);
   display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: min(5vw, 5vh);
-}
-
-.Home {
-  display: flex;
   flex-direction: column;
+  justify-content: center;
+  overflow-x: hidden;
 }
 
-.logo {
-  font-size: max(20vw, 8rem);
-  font-family: 'Pacifico', cursive;
-  font-family: 'Permanent Marker', cursive;
-  align-self: center;
-}
-
-.tagline {
-  font-size: max(4vw, 1.8rem);
-  font-family: 'Pacifico', cursive;
-  align-self: center;
-  text-align: center;
-  margin-top: min(-40px, -7vw);
-  margin-bottom: 2rem;
-  
+.App {
+  padding: 0 min(10vw, 10vh);
+  width: 100%;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  min-height: 100vh;
 }
 
 .buttonGroup {
@@ -63,4 +48,39 @@
 .App button:active {
   box-shadow: none;
   transform: translate(2px, 2px);
+}
+
+.Header {
+  width: 100%;
+  max-width: var(--max-width);
+  height: fit-content;
+  display: flex;
+  margin-bottom: 2rem;
+}
+
+.headerLogo {
+  font-size: max(10vw, 5rem);
+  font-family: 'Pacifico', cursive;
+  font-family: 'Permanent Marker', cursive;
+  display: flex;
+}
+
+.Home {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  font-size: max(20vw, 8rem);
+  font-family: 'Permanent Marker', cursive;
+  align-self: center;
+}
+
+.tagline {
+  font-size: max(4vw, 1.8rem);
+  font-family: 'Pacifico', cursive;
+  align-self: center;
+  text-align: center;
+  margin-top: min(-40px, -7vw);
+  margin-bottom: 2rem;
 }
