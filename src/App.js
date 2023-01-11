@@ -13,7 +13,6 @@ import Layout from "./components/Layout";
 export default function App() {
 
   const title = "Jot";
-  // const tagline = "Like doodle but better";
   const tagline = "Scheduling made easy";
 
 
