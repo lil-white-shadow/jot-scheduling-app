@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CreateEvent from "./components/CreateEvent";
-import ViewEvent from "./components/ViewEvent";
+// import ViewEvent from "./components/ViewEvent";
 import ViewCurrentEvents from "./components/ViewCurrentEvents";
 import About from "./components/About";
 import PageNotFound from "./components/PageNotFound";
@@ -17,7 +17,7 @@ export default function App() {
 
 
   const [newEventId, setNewEventId] = useState('');
-  const [currentEvents, setCurrentEvents] = useState([]);
+  // const [allEventIds, setAllEventIds] = useState([]);
 
   return (
     <div className="App">
@@ -26,28 +26,27 @@ export default function App() {
         <Route
           // Home Page
           index
-          element={<Home title={title} tagline={tagline} setNewEventId={setNewEventId} currentEvents={currentEvents}/>}
+          element={<Home title={title} tagline={tagline} setNewEventId={setNewEventId}/>}
         />
         <Route path="/" element={<Layout title={title}/>}>
           <Route
             // Create New Event Page
             path={"create-eventId=" + newEventId}
-            element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
+            element={<CreateEvent newEventId={newEventId}/>}
           />
           <Route
             // View Current Events Page
             path={"view-current-events"}
-            element={<ViewCurrentEvents currentEvents={currentEvents}/>}
+            element={<ViewCurrentEvents/>}
           />
           {
-            currentEvents.map(event => 
-              <Route key={event.eventId}
-                // View event + RSVP Page
-                path={"view-eventId=" + event.eventId}
-                element={<ViewEvent eventId={event.eventId} currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]}
-              />}
-              />
-            )
+            // allEventIds.map(eventId => 
+            //   <Route key={eventId}
+            //     // View event + RSVP Page
+            //     path={"view-eventId=" + eventId}
+            //     element={<ViewEvent eventId={eventId}/>}
+            //   />
+            // )
           }
           <Route path="about" element={<About />} />
           <Route path="*" element={<PageNotFound />} />

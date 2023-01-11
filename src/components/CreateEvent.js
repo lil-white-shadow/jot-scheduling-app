@@ -38,7 +38,6 @@ export default function CreateEvent(props) {
   function onSubmit(e) {
     e.preventDefault();
     setIsEventCreated(true);
-    props.setCurrentEvents([...props.currentEvents, currentEvent]);
     postNewEvent();
   }
   return (
