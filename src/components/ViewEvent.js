@@ -76,7 +76,7 @@ export default function ViewEvent(props) {
 
   // get event details
   useEffect(() => {
-    fetch("http://localhost:3001/api/events/" + props.eventId)
+    fetch(props.url + "/api/events/" + props.eventId)
       .then(response => response.json())
       .then(data => {
         setCurrentEvent(data[0]);
@@ -92,7 +92,7 @@ export default function ViewEvent(props) {
   // update event RSVP
   useEffect(() => {
 
-    fetch('http://localhost:3001/api/events/' + props.eventId, {
+    fetch(props.url + '/api/events/' + props.eventId, {
       method: 'PATCH',
       headers:{'content-type': 'application/json'},
     body: JSON.stringify({

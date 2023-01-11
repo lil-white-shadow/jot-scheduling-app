@@ -15,12 +15,14 @@ export default function App() {
   const title = "Jot";
   const tagline = "Scheduling made easy";
 
+  const API_ENDPOINT = "https://jot-api-service.onrender.com";
+
 
   const [newEventId, setNewEventId] = useState('');
   const [allEventIds, setAllEventIds] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/ids")
+    fetch(API_ENDPOINT + "/api/ids")
       .then(response => response.json())
       .then(data => setAllEventIds(data))
   }, [newEventId])
@@ -38,19 +40,19 @@ export default function App() {
           <Route
             // Create New Event Page
             path={"create-event"}
-            element={<CreateEvent newEventId={newEventId} setNewEventId={setNewEventId} setAllEventIds={setAllEventIds}/>}
+            element={<CreateEvent url={API_ENDPOINT} newEventId={newEventId} setNewEventId={setNewEventId} setAllEventIds={setAllEventIds}/>}
           />
           <Route
             // View All Events Page
             path={"view-all-events"}
-            element={<ViewAllEvents/>}
+            element={<ViewAllEvents url={API_ENDPOINT}/>}
           />
           {
             allEventIds.map(eventId => 
               <Route key={eventId}
                 // View event + RSVP Page with dynamic url
                 path={"view-eventId=" + eventId}
-                element={<ViewEvent eventId={eventId}/>}
+                element={<ViewEvent eventId={eventId} url={API_ENDPOINT}/>}
               />
             )
           }

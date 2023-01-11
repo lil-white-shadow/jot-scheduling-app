@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function CreateEvent(props) {
-
+  
   const [isEventCreated, setIsEventCreated] = useState(false);
   const [isFormValid, setIsFormValid] = useState(true);
 
@@ -33,7 +33,7 @@ export default function CreateEvent(props) {
   }
 
   function postNewEvent(arg) {
-    fetch('http://localhost:3001/api/new-event', {
+    fetch(props.url + '/api/new-event', {
       method: 'POST',
       headers:{'content-type': 'application/json'},
       body: JSON.stringify({

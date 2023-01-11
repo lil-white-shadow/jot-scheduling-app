@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export default function ViewAllEvents() {
+export default function ViewAllEvents(props) {
 
   const [currentEvents, setCurrentEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/events")
+    fetch(props.url + "/api/events")
       .then(response => response.json())
       .then(data => setCurrentEvents(data))
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (
