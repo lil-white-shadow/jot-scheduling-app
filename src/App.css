@@ -1,7 +1,7 @@
 /* Color theme & max width variables */
 :root {
-  --primary: #FF3C38;
-  --secondary: #FFF275;
+  --primary: #1C3144;
+  --secondary: #3F88C5;
   --accent: #FF8C42;
   --max-width: 1086px;
 }
@@ -34,6 +34,10 @@
   gap: 1rem;
 }
 
+.buttonGroup>a>button {
+  width: 180px;
+}
+
 .App a, .App button {
   color: var(--primary);
 }
@@ -45,24 +49,6 @@
   padding: 0.2rem 1rem;
 }
 
-.App .aboutButton {
-  min-width: 100px;
-  border-color: #885053;
-  color: #885053;
-  box-shadow: 3px 3px 0px #885053;
-  font-style: italic;
-}
-
-.App .aboutButton:hover {
-  box-shadow: 4.5px 3px 0px #885053;
-  transform: translate(-1.5px, 0px);
-}
-
-.App .aboutButton:active {
-  box-shadow: none;
-  transform: translate(2px, 2px);
-}
-
 .App button:hover {
   box-shadow: 4.5px 3px 0px var(--primary);
   transform: translate(-1.5px, 0px);
@@ -71,6 +57,13 @@
 .App button:active {
   box-shadow: none;
   transform: translate(2px, 2px);
+}
+
+.App input, .App select {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid var(--primary);
 }
 
 .App .feedback {
@@ -94,8 +87,17 @@
   max-width: var(--max-width);
   height: fit-content;
   display: flex;
+  flex-grow: 1;
   flex-direction: column;
   margin-bottom: 2rem;
+}
+
+.navWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 2rem;
 }
 
 .headerLogo {
@@ -103,11 +105,63 @@
   font-family: 'Pacifico', cursive;
   font-family: 'Permanent Marker', cursive;
   display: flex;
+  /* min-width: 260px; */
+}
+
+.navButtonGroup {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button.returnHomeWrapper, button.navActivePage {
+  box-sizing: border-box;
+  display: flex;
+  gap: 5px;
+  box-shadow: none;
+  width: fit-content;
+  justify-content: center;
+  font-size: 0.8rem;
+  border: none;
+  box-shadow: 1px 1px 2px var(--primary), -1px -1px 2px var(--primary);
+}
+
+button.returnHomeWrapper:hover {
+  box-shadow: none;
+  transform: none;
+  background-color: var(--primary);
+}
+
+button.returnHomeWrapper:hover a {
+  color: var(--secondary);
+}
+
+button.returnHomeWrapper:active {
+  scale: 0.95;
+}
+
+button.navActivePage {
+  background-color: var(--primary);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
+button.navActivePage a {
+  color: var(--secondary);
+  cursor: not-allowed;
+}
+
+button.navActivePage:hover {
+  box-shadow: none;
+  transform: none;
+  background-color: var(--primary);
 }
 
 .Home {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
+  justify-content: center;
 }
 
 .logo {
@@ -125,37 +179,16 @@
   margin-bottom: 2rem;
 }
 
-button.returnHomeWrapper {
-  box-sizing: border-box;
-  display: flex;
-  gap: 5px;
-  box-shadow: none;
-  width: fit-content;
-  box-shadow: 2px 2px 2px var(--primary), -2px -2px 2px var(--primary);
-}
-
-button.returnHomeWrapper:hover {
-  box-shadow: none;
-  transform: none;
-  background-color: var(--primary);
-}
-
-button.returnHomeWrapper:hover a {
-  color: var(--secondary);
-}
-
-button.returnHomeWrapper:active {
-  scale: 0.95;
-}
-
 /* main */
 
 .main {
   display: flex;
   flex-direction: column;
+  flex-grow: 1;
   width: 100%;
-  margin-top: 2rem;
+  margin-top: 4rem;
   gap: 1rem;
+  justify-content: flex-start;
 }
 
 .main h1 {
@@ -174,6 +207,7 @@ button.returnHomeWrapper:active {
 
 .main__CreateEvent {
   align-items: center;
+  justify-content: center;
 }
 
 .main__CreateEvent form {
@@ -235,7 +269,7 @@ button.returnHomeWrapper:active {
   align-items: flex-start;
 }
 
-/* main - ViewCurrentEvents */
+/* main - ViewAllEvents */
 
 .main__ViewCurrentEvents .cardLineGroup {
   flex-direction: column;
@@ -258,10 +292,18 @@ button.returnHomeWrapper:active {
 
 .signature {
   display: flex;
+  font-family: 'Pacifico', cursive;
   flex-wrap: wrap;
   width: 100%;
   justify-content: center;
   gap: 5px;
   font-size: min(5vw, 1.2rem);
   padding-top: 2rem;
+  margin-bottom: 0;
+}
+
+.heartIcon {
+  color: red;
+  scale: 1.5;
+  padding: 0 5px 2px 5px;
 }
