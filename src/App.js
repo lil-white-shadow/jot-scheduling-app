@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CreateEvent from "./components/CreateEvent";
-// import ViewEvent from "./components/ViewEvent";
+import ViewEvent from "./components/ViewEvent";
 import ViewCurrentEvents from "./components/ViewCurrentEvents";
 import About from "./components/About";
 import PageNotFound from "./components/PageNotFound";
 
 import './App.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from "./components/Layout";
 
 export default function App() {
@@ -17,7 +17,13 @@ export default function App() {
 
 
   const [newEventId, setNewEventId] = useState('');
-  // const [allEventIds, setAllEventIds] = useState([]);
+  const [allEventIds, setAllEventIds] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/ids")
+      .then(response => response.json())
+      .then(data => setAllEventIds(data))
+  }, [newEventId])
 
   return (
     <div className="App">
@@ -26,27 +32,27 @@ export default function App() {
         <Route
           // Home Page
           index
-          element={<Home title={title} tagline={tagline} setNewEventId={setNewEventId}/>}
+          element={<Home title={title} tagline={tagline}/>}
         />
         <Route path="/" element={<Layout title={title}/>}>
           <Route
             // Create New Event Page
-            path={"create-eventId=" + newEventId}
-            element={<CreateEvent newEventId={newEventId}/>}
+            path={"create-event"}
+            element={<CreateEvent newEventId={newEventId} setNewEventId={setNewEventId} setAllEventIds={setAllEventIds}/>}
           />
           <Route
-            // View Current Events Page
+            // View All Events Page
             path={"view-current-events"}
             element={<ViewCurrentEvents/>}
           />
           {
-            // allEventIds.map(eventId => 
-            //   <Route key={eventId}
-            //     // View event + RSVP Page
-            //     path={"view-eventId=" + eventId}
-            //     element={<ViewEvent eventId={eventId}/>}
-            //   />
-            // )
+            allEventIds.map(eventId => 
+              <Route key={eventId}
+                // View event + RSVP Page with dynamic url
+                path={"view-eventId=" + eventId}
+                element={<ViewEvent eventId={eventId}/>}
+              />
+            )
           }
           <Route path="about" element={<About />} />
           <Route path="*" element={<PageNotFound />} />

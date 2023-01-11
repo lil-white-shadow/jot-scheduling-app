@@ -1,21 +1,6 @@
 import { Link } from "react-router-dom";
 
 export default function Home(props) {
-
-  function generateRandomId() {
-    
-    let id = Math.floor(Math.random() * 100 + 100);
-    
-    for (var i = 0; i < 5; i++) {
-      let chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-      id = id + chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-
-    return id;
-  }
-
-  let newEventId = generateRandomId();
-  
   return ( 
     <div className="Home">
       <div className="logo">
@@ -26,8 +11,8 @@ export default function Home(props) {
         <Link to={"view-current-events"}>
           <button>View Current Events</button>
         </Link>
-        <Link to={"create-eventId=" + newEventId}>
-          <button onClick={() => {props.setNewEventId(newEventId)}}>Create New Event</button>
+        <Link to={"create-event"}>
+          <button>Create New Event</button>
         </Link>
         <Link to={"about"}>
           <button className="aboutButton">About</button>

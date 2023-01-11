@@ -5,8 +5,7 @@ export default function CreateEvent(props) {
 
   const [isEventCreated, setIsEventCreated] = useState(false);
 
-  const newEvent = {
-    "eventId": props.newEventId,
+  const defaultEventInputs = {
     "eventOrganizer": 'Bhavin',
     "eventName": 'Volleyball',
     "eventDate": new Date().toLocaleDateString(),
@@ -15,22 +14,32 @@ export default function CreateEvent(props) {
     "eventLocation": 'The Club at Prairie Stone, Hoffman Estates'
   }
 
-  const [currentEvent, setCurrentEvent] = useState(newEvent);
+  const [currentEventInputs, setCurrentEventInputs] = useState(defaultEventInputs);
 
+  function generateRandomId() {
+    
+    let id = Math.floor(Math.random() * 100 + 100);
+    
+    for (var i = 0; i < 5; i++) {
+      let chars = "abcdefghijklmnopqrstuvwxyz0123456789";
+      id = id + chars.charAt(Math.floor(Math.random() * chars.length));
+    }
 
-  async function postNewEvent() {
-    console.log(JSON.stringify({"eventId": props.newEventId}));
-    await fetch('http://localhost:3001/api/new-event', {
+    return id;
+  }
+
+  function postNewEvent(arg) {
+    fetch('http://localhost:3001/api/new-event', {
       method: 'POST',
       headers:{'content-type': 'application/json'},
       body: JSON.stringify({
-        eventId: currentEvent.eventId,
-        eventDate: currentEvent.eventDate,
-        eventName: currentEvent.eventName,
-        eventStartTime: currentEvent.eventStartTime,
-        eventEndTime: currentEvent.eventEndTime,
-        eventLocation: currentEvent.eventLocation,
-        eventOrganizer: currentEvent.eventOrganizer
+        eventId: arg,
+        eventDate: currentEventInputs.eventDate,
+        eventName: currentEventInputs.eventName,
+        eventStartTime: currentEventInputs.eventStartTime,
+        eventEndTime: currentEventInputs.eventEndTime,
+        eventLocation: currentEventInputs.eventLocation,
+        eventOrganizer: currentEventInputs.eventOrganizer
       })
     })
   }
@@ -38,7 +47,13 @@ export default function CreateEvent(props) {
   function onSubmit(e) {
     e.preventDefault();
     setIsEventCreated(true);
-    postNewEvent();
+    let newId = generateRandomId();
+    props.setNewEventId(newId);
+    
+    // DO NOT USE postNewEvent(props.newEventId) as that still picks up empty string from original value set in App.js
+    postNewEvent(newId);
+    
+    props.setAllEventIds = [...props.setAllEventIds, newId]
   }
   return (
     <div className="main main__CreateEvent">
@@ -49,27 +64,27 @@ export default function CreateEvent(props) {
         <form onSubmit={onSubmit} noValidate>
           <div>
             <label htmlFor="eventOrganizer">Your Name: </label>
-            <input type="text" name="eventOrganizer" defaultValue={newEvent.eventOrganizer} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventOrganizer:(e.target.value)}))}/>
+            <input type="text" name="eventOrganizer" defaultValue={defaultEventInputs.eventOrganizer} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventName">Event Name: </label>
-            <input type="text" name="eventName" defaultValue={newEvent.eventName} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventName:(e.target.value)}))}/>
+            <input type="text" name="eventName" defaultValue={defaultEventInputs.eventName} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventDate">Date: </label>
-            <input type="date" name="eventDate" defaultValue={newEvent.eventDate} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventDate:(e.target.value)}))}/>
+            <input type="date" name="eventDate" defaultValue={defaultEventInputs.eventDate} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventDate:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventStartTime">Start: </label>
-            <input type="time" name="eventStartTime" defaultValue={newEvent.eventStartTime} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventStartTime:(e.target.value)}))}/>
+            <input type="time" name="eventStartTime" defaultValue={defaultEventInputs.eventStartTime} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventStartTime:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventEndTime">End: </label>
-            <input type="time" name="eventEndTime" defaultValue={newEvent.eventEndTime} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventEndTime:(e.target.value)}))}/>
+            <input type="time" name="eventEndTime" defaultValue={defaultEventInputs.eventEndTime} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventEndTime:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventLocation">Location: </label>
-            <input type="address" name="eventLocation" defaultValue={newEvent.eventLocation} onChange={e => setCurrentEvent(Object.assign({}, currentEvent, {eventLocation:(e.target.value)}))}/>
+            <input type="address" name="eventLocation" defaultValue={defaultEventInputs.eventLocation} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
           </div>
           <button type="submit">Create</button>
         </form>
