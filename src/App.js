@@ -44,7 +44,7 @@ export default function App() {
               <Route key={event.eventId}
                 // View event + RSVP Page
                 path={"view-eventId=" + event.eventId}
-                element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]}
+                element={<ViewEvent eventId={event.eventId} currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]}
               />}
               />
             )

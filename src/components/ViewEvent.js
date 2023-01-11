@@ -1,6 +1,9 @@
 import { useState, useEffect } from "react";
 
 export default function ViewEvent(props) {
+
+  const [currentEvent, setCurrentEvent] = useState([]);
+
   const [userName, setUserName] = useState('');
   const [availability, setAvailability] = useState(undefined);
   const [guestStatus, setGuestStatus] = useState('off');
@@ -72,31 +75,31 @@ export default function ViewEvent(props) {
   }
 
   useEffect(() => {
-    fetch("http://localhost:3001/api")
+    fetch("http://localhost:3001/api/events/" + props.eventId)
       .then(response => response.json())
-      .then(data => console.log(data))
-  }, [])
+      .then(data => setCurrentEvent(data[0]))
+  }, [props.eventId])
   
   return(
     <div className="main main__ViewEvent">
       <h1>You've been invited!</h1>
       <div className="card">
-        <h2>Event: {props.currentEvent.eventName}</h2>
+        <h2>Event: {currentEvent.eventName}</h2>
         <div className="cardLine">
           <div className="cardLineTitle">Date: </div>
-          <div className="cardLineContent">{props.currentEvent.eventDate}</div>
+          <div className="cardLineContent">{currentEvent.eventDate}</div>
         </div>
         <div className="cardLine">
           <div className="cardLineTitle">Time: </div>
-          <div className="cardLineContent">{props.currentEvent.eventStartTime} - {props.currentEvent.eventEndTime} {props.currentEvent.eventEndTime < "12:00" ? "am" : null}</div>
+          <div className="cardLineContent">{currentEvent.eventStartTime} - {currentEvent.eventEndTime} {currentEvent.eventEndTime < "12:00" ? "am" : null}</div>
         </div>
         <div className="cardLine">
           <div className="cardLineTitle">Location: </div>
-          <div className="cardLineContent">{props.currentEvent.eventLocation}</div>
+          <div className="cardLineContent">{currentEvent.eventLocation}</div>
         </div>
         <div className="cardLine">
           <div className="cardLineTitle">Host: </div>
-          <div className="cardLineContent">{props.currentEvent.eventOrganizer}</div>
+          <div className="cardLineContent">{currentEvent.eventOrganizer}</div>
         </div>
       </div>
       {
