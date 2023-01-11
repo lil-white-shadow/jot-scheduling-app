@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import Home from "./components/Home";
 import CreateEvent from "./components/CreateEvent";
 import ViewEvent from "./components/ViewEvent";
@@ -29,7 +29,7 @@ export default function App() {
 
   return (
     <div className="App">
-    <BrowserRouter>
+    <HashRouter>
       <Routes>
         <Route
           // Home Page
@@ -60,7 +60,7 @@ export default function App() {
           <Route path="*" element={<PageNotFound />} />
         </Route>
       </Routes>
-    </BrowserRouter>
+    </HashRouter>
     <p class="signature">Designed with <span class="heartIcon">&hearts;</span> by Krutarth Patel</p>
     </div>
   );
