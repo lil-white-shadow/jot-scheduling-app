@@ -28,7 +28,7 @@ export default function CreateEvent(props) {
       {
         !isEventCreated ?
         <div>
-        <h1>Enter Event Information</h1>
+        <h1>Enter Event Details</h1>
         <form onSubmit={onSubmit} noValidate>
           <div>
             <label htmlFor="eventOrganizer">Your Name: </label>

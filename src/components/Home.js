@@ -29,8 +29,10 @@ export default function Home(props) {
         <Link to={"create-eventId=" + newEventId}>
           <button onClick={() => {props.setNewEventId(newEventId)}}>Create New Event</button>
         </Link>
+        <Link to={"about"}>
+          <button>About</button>
+        </Link>
       </div>
-
     </div>
    );
 }
