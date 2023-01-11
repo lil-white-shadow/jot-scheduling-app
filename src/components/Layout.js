@@ -8,11 +8,8 @@ export default function Layout(props) {
           {props.title}
         </div>
         <button className="returnHomeWrapper">
-        <span>
-          &#8592;
-        </span>
-        <Link to={"/"}>Return home</Link>
-      </button>
+          <Link to={"/"}>Return home</Link>
+        </button>
       <Outlet />
     </div>
   )

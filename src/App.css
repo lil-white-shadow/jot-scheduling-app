@@ -80,7 +80,7 @@
   width: fit-content;
   max-width: 500px;
   border-radius: 10px;
-  box-shadow: 3px 3px 3px green;
+  box-shadow: 3px 3px 0px green;
 }
 
 .App .feedback a {
@@ -126,26 +126,26 @@
 }
 
 button.returnHomeWrapper {
+  box-sizing: border-box;
   display: flex;
   gap: 5px;
   box-shadow: none;
   width: fit-content;
+  box-shadow: 2px 2px 2px var(--primary), -2px -2px 2px var(--primary);
 }
 
 button.returnHomeWrapper:hover {
   box-shadow: none;
   transform: none;
+  background-color: var(--primary);
 }
 
-.returnHomeWrapper span {
-  scale: 1.7;
-  position: relative;
-  top: -5px;
-  display: none;
+button.returnHomeWrapper:hover a {
+  color: var(--secondary);
 }
 
-.returnHomeWrapper:hover span {
-  display: inline;
+button.returnHomeWrapper:active {
+  scale: 0.95;
 }
 
 /* main */
@@ -254,28 +254,6 @@ button.returnHomeWrapper:hover {
 
 .main__ViewCurrentEvents .cardLineTitle {
   width: min(100%, 360px);
-}
-
-.main__ViewCurrentEvents button.goToButton {
-  box-shadow: none;
-  transform: none;
-}
-
-.goToButton a {
-  display: flex;
-}
-
-.goToButton .goToArrow {
-  rotate: 270deg;
-  scale: 1.25;
-  display: none;
-}
-
-.goToButton:hover .goToArrow {
-  rotate: 270deg;
-  scale: 1.15;
-  display: block;
-  font-weight: 100;
 }
 
 .signature {

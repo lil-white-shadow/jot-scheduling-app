@@ -25,8 +25,6 @@ export default function ViewAllEvents(props) {
               <button className="goToButton">
               <Link to={"/view-eventId=" + event.eventId}>
                 Go to event
-                &nbsp;
-                <div className="goToArrow">&#8627;</div>
               </Link>
               </button>
             </div>
