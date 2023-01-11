@@ -109,7 +109,7 @@ export default function ViewEvent(props) {
       : <div className="feedback">
         <h2>You're registered &#10004;</h2>
         <div>
-          Click <span onClick={() => setIsFormSubmitted(false)} style={{textDecoration: "underline", cursor:"pointer"}}>here</span> to RSVP someone else.
+          Click <span onClick={() => setIsFormSubmitted(false)} style={{textDecoration: "underline", cursor:"pointer"}}>here</span> to change or RSVP for someone else.
         </div>
       </div>
       }
