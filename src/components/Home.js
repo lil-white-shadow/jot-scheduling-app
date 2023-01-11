@@ -30,7 +30,7 @@ export default function Home(props) {
           <button onClick={() => {props.setNewEventId(newEventId)}}>Create New Event</button>
         </Link>
         <Link to={"about"}>
-          <button>About</button>
+          <button className="aboutButton">About</button>
         </Link>
       </div>
     </div>

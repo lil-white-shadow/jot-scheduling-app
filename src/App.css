@@ -42,6 +42,24 @@
   padding: 0.2rem 1rem;
 }
 
+.App .aboutButton {
+  min-width: 100px;
+  border-color: #885053;
+  color: #885053;
+  box-shadow: 3px 3px 0px #885053;
+  font-style: italic;
+}
+
+.App .aboutButton:hover {
+  box-shadow: 4.5px 3px 0px #885053;
+  transform: translate(-1.5px, 0px);
+}
+
+.App .aboutButton:active {
+  box-shadow: none;
+  transform: translate(2px, 2px);
+}
+
 .App button:hover {
   box-shadow: 4.5px 3px 0px var(--primary);
   transform: translate(-1.5px, 0px);
