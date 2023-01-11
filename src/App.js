@@ -24,21 +24,25 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route
+          // Home Page
           index
           element={<Home title={title} tagline={tagline} setNewEventId={setNewEventId} currentEvents={currentEvents}/>}
         />
         <Route path="/" element={<Layout title={title}/>}>
           <Route
+            // Create New Event Page
             path={"create-eventId=" + newEventId}
             element={<CreateEvent newEventId={newEventId} currentEvents={currentEvents} setCurrentEvents={setCurrentEvents}/>}
           />
           <Route
+            // View Current Events Page
             path={"view-current-events"}
             element={<ViewCurrentEvents currentEvents={currentEvents}/>}
           />
           {
             currentEvents.map(event => 
               <Route key={event.eventId}
+                // View event + RSVP Page
                 path={"view-eventId=" + event.eventId}
                 element={<ViewEvent currentEvent={currentEvents.filter(ele => ele.eventId === event.eventId)[0]}
               />}
