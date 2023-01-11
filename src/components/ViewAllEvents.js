@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-export default function ViewCurrrentEvents() {
+export default function ViewAllEvents() {
 
   const [currentEvents, setCurrentEvents] = useState([]);
 

@@ -8,8 +8,8 @@ export default function Home(props) {
       <div className="tagline">{props.tagline}</div>
       </div>
       <div className="buttonGroup">
-        <Link to={"view-current-events"}>
-          <button>View Current Events</button>
+        <Link to={"view-all-events"}>
+          <button>View All Events</button>
         </Link>
         <Link to={"create-event"}>
           <button>Create New Event</button>

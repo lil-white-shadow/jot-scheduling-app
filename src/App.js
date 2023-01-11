@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
 import CreateEvent from "./components/CreateEvent";
 import ViewEvent from "./components/ViewEvent";
-import ViewCurrentEvents from "./components/ViewCurrentEvents";
+import ViewAllEvents from "./components/ViewAllEvents";
 import About from "./components/About";
 import PageNotFound from "./components/PageNotFound";
 
@@ -42,8 +42,8 @@ export default function App() {
           />
           <Route
             // View All Events Page
-            path={"view-current-events"}
-            element={<ViewCurrentEvents/>}
+            path={"view-all-events"}
+            element={<ViewAllEvents/>}
           />
           {
             allEventIds.map(eventId => 
