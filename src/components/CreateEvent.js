@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 export default function CreateEvent(props) {
 
   const [isEventCreated, setIsEventCreated] = useState(false);
+  const [isFormValid, setIsFormValid] = useState(true);
 
   const defaultEventInputs = {
     "eventOrganizer": 'Bhavin',
@@ -52,14 +53,27 @@ export default function CreateEvent(props) {
 
   function onSubmit(e) {
     e.preventDefault();
-    setIsEventCreated(true);
-    let newId = generateRandomId();
-    props.setNewEventId(newId);
+
+    if(currentEventInputs.eventOrganizer !== "" && 
+      currentEventInputs.eventName !== "" &&
+      currentEventInputs.eventDate !== "" &&
+      currentEventInputs.eventStartTime !== "" &&
+      currentEventInputs.eventEndTime !== "" &&
+      currentEventInputs.eventLocation !== "") {
+        
+      setIsEventCreated(true);
+      let newId = generateRandomId();
+      props.setNewEventId(newId);
+      
+      // DO NOT USE postNewEvent(props.newEventId) as that still picks up empty string from original value set in App.js
+      postNewEvent(newId);
+      
+      props.setAllEventIds = [...props.setAllEventIds, newId]
     
-    // DO NOT USE postNewEvent(props.newEventId) as that still picks up empty string from original value set in App.js
-    postNewEvent(newId);
-    
-    props.setAllEventIds = [...props.setAllEventIds, newId]
+    } else {
+
+      setIsFormValid(false)
+    }
   }
   return (
     <div className="main main__CreateEvent">
@@ -93,6 +107,11 @@ export default function CreateEvent(props) {
             <input type="address" name="eventLocation" defaultValue={defaultEventInputs.eventLocation} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
           </div>
           <button type="submit">Create</button>
+          {
+            !isFormValid ?
+            <span style={{fontWeight: "700", textDecoration: "underline"}}>Error! You must enter your name & availability.</span>
+            : null
+          }
         </form>
       </div>
       :
