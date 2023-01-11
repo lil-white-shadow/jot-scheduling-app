@@ -78,22 +78,32 @@ export default function ViewEvent(props) {
   useEffect(() => {
     fetch("http://localhost:3001/api/events/" + props.eventId)
       .then(response => response.json())
-      .then(data => setCurrentEvent(data[0]))
-  }, [props.eventId])
+      .then(data => {
+        setCurrentEvent(data[0]);
+
+        // DO NOT USE currentEvent.eventAttendees etc. as they still picks up empty [] from original state
+        setAvailableUsers(data[0].eventAttendees);
+        setSpecialInvitees(data[0].eventSpecialGuests);
+        setUnavailableUsers(data[0].eventNonAttendees);
+      })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
 
   // update event RSVP
   useEffect(() => {
+
     fetch('http://localhost:3001/api/events/' + props.eventId, {
       method: 'PATCH',
       headers:{'content-type': 'application/json'},
-      body: JSON.stringify({
-        eventAttendees: availableUsers,
-        eventSpecialGuests: specialInvitees,
-        eventNonAttendees: unavailableUsers
-      })
+    body: JSON.stringify({
+      eventAttendees: availableUsers,
+      eventSpecialGuests: specialInvitees,
+      eventNonAttendees: unavailableUsers
     })
+  })
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [availableUsers, specialInvitees, unavailableUsers])
 
-  }, [availableUsers, specialInvitees, unavailableUsers, props.eventId])
   
   return(
     <div className="main main__ViewEvent">
