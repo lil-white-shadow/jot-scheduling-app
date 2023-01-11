@@ -3,6 +3,8 @@ Jot is a full stack event scheduling application made with React on the front-en
 
 ## Published @ https://lil-white-shadow.github.io/jot-scheduling-app/#/
 
+## Back-end repo @ https://github.com/lil-white-shadow/jot-backend-node
+
 ## Images and Demo
 
 ### RSVP Demo -- RSVP information updates instantaneously upon change
