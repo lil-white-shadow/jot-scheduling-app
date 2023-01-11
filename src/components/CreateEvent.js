@@ -11,7 +11,10 @@ export default function CreateEvent(props) {
     "eventDate": new Date().toLocaleDateString(),
     "eventStartTime": '07:30',
     "eventEndTime": '09:00',
-    "eventLocation": 'The Club at Prairie Stone, Hoffman Estates'
+    "eventLocation": 'The Club at Prairie Stone, Hoffman Estates',
+    "eventAttendees": [],
+    "eventSpecialGuests": [],
+    "eventNonAttendees": []
   }
 
   const [currentEventInputs, setCurrentEventInputs] = useState(defaultEventInputs);
@@ -39,7 +42,10 @@ export default function CreateEvent(props) {
         eventStartTime: currentEventInputs.eventStartTime,
         eventEndTime: currentEventInputs.eventEndTime,
         eventLocation: currentEventInputs.eventLocation,
-        eventOrganizer: currentEventInputs.eventOrganizer
+        eventOrganizer: currentEventInputs.eventOrganizer,
+        eventAttendees: currentEventInputs.eventAttendees,
+        eventSpecialGuests: currentEventInputs.eventSpecialGuests,
+        eventNonAttendees: currentEventInputs.eventNonAttendees
       })
     })
   }
