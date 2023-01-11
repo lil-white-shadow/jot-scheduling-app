@@ -74,11 +74,26 @@ export default function ViewEvent(props) {
       }
   }
 
+  // get event details
   useEffect(() => {
     fetch("http://localhost:3001/api/events/" + props.eventId)
       .then(response => response.json())
       .then(data => setCurrentEvent(data[0]))
   }, [props.eventId])
+
+  // update event RSVP
+  useEffect(() => {
+    fetch('http://localhost:3001/api/events/' + props.eventId, {
+      method: 'PATCH',
+      headers:{'content-type': 'application/json'},
+      body: JSON.stringify({
+        eventAttendees: availableUsers,
+        eventSpecialGuests: specialInvitees,
+        eventNonAttendees: unavailableUsers
+      })
+    })
+
+  }, [availableUsers, specialInvitees, unavailableUsers, props.eventId])
   
   return(
     <div className="main main__ViewEvent">
