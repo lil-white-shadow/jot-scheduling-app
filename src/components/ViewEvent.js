@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function ViewEvent(props) {
   const [userName, setUserName] = useState('');
@@ -70,6 +70,13 @@ export default function ViewEvent(props) {
         setIsFormValid(false);
       }
   }
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api")
+      .then(response => response.json())
+      .then(data => console.log(data))
+  }, [])
+  
   return(
     <div className="main main__ViewEvent">
       <h1>You've been invited!</h1>

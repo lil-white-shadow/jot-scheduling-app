@@ -1,12 +1,22 @@
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export default function ViewCurrrentEvents(props) {
+export default function ViewCurrrentEvents() {
+
+  const [currentEvents, setCurrentEvents] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3001/api/events")
+      .then(response => response.json())
+      .then(data => setCurrentEvents(data))
+  }, [])
+
   return (
   <div className="main main__ViewCurrentEvents card">
-      <h1>{props.currentEvents.length} Events in progress</h1>
+      <h1>{currentEvents.length} Events in progress</h1>
       <div className="cardLineGroup">
         {
-          props.currentEvents.map(event =>
+          currentEvents.map(event =>
             <div key={event.eventId} className="cardLine">
               <span className="cardLineTitle">
               {event.eventId} - {event.eventName} on {event.eventDate} by {event.eventOrganizer}
