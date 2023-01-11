@@ -17,11 +17,29 @@ export default function CreateEvent(props) {
 
   const [currentEvent, setCurrentEvent] = useState(newEvent);
 
+
+  async function postNewEvent() {
+    console.log(JSON.stringify({"eventId": props.newEventId}));
+    await fetch('http://localhost:3001/api/new-event', {
+      method: 'POST',
+      headers:{'content-type': 'application/json'},
+      body: JSON.stringify({
+        eventId: currentEvent.eventId,
+        eventDate: currentEvent.eventDate,
+        eventName: currentEvent.eventName,
+        eventStartTime: currentEvent.eventStartTime,
+        eventEndTime: currentEvent.eventEndTime,
+        eventLocation: currentEvent.eventLocation,
+        eventOrganizer: currentEvent.eventOrganizer
+      })
+    })
+  }
+
   function onSubmit(e) {
     e.preventDefault();
     setIsEventCreated(true);
     props.setCurrentEvents([...props.currentEvents, currentEvent]);
-
+    postNewEvent();
   }
   return (
     <div className="main main__CreateEvent">
