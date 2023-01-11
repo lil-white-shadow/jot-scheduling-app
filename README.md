@@ -1,4 +1,4 @@
-# Jot
+# Jot - A Scheduling App
 Jot is a full stack event scheduling application made with React on the front-end and Node/Express on the back-end. It lets users create and share event details with their guests who can RSVP to the event. It also allows editing RSVP information and dynamically updates the RSVP information upon a change.
 
 ## Published @ https://lil-white-shadow.github.io/jot-scheduling-app/#/
