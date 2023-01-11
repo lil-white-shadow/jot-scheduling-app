@@ -22,6 +22,9 @@
   max-width: var(--max-width);
   margin: 0 auto;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .buttonGroup {
@@ -273,4 +276,14 @@ button.returnHomeWrapper:hover {
   scale: 1.15;
   display: block;
   font-weight: 100;
+}
+
+.signature {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  justify-content: center;
+  gap: 5px;
+  font-size: min(5vw, 1.2rem);
+  padding-top: 2rem;
 }

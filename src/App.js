@@ -59,6 +59,7 @@ export default function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    <p class="signature">Designed with <span class="heartIcon">&hearts;</span> by Krutarth Patel</p>
     </div>
   );
 }
