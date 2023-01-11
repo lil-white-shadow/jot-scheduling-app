@@ -32,18 +32,34 @@ export default function ViewEvent(props) {
       if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off' && formInputs.userName.toUpperCase) {
 
         setAvailableUsers([...availableArray, formInputs.userName.toUpperCase()]);
-        setSpecialInvitees([...specialInviteesArray]);
-        setUnavailableUsers([...unavailableArray]);
+        if(specialInvitees !== specialInviteesArray) {
+          setSpecialInvitees([...specialInviteesArray]);
+        }
+        if(unavailableUsers !== unavailableArray) {
+          setUnavailableUsers([...unavailableArray]);
+        }
 
       } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
         
-        setAvailableUsers([...availableArray]);
-        setSpecialInvitees([...specialInviteesArray,formInputs.userName.toUpperCase()])
-        setUnavailableUsers([...unavailableArray]);
+        setSpecialInvitees([...specialInviteesArray,formInputs.userName.toUpperCase()]);
+
+        if(availableUsers !== availableArray) {
+          setAvailableUsers([...availableArray]);
+        }
+        if(unavailableUsers !== unavailableArray) {
+          setUnavailableUsers([...unavailableArray]);
+        }
+
       } else {
-        setAvailableUsers([...availableArray]);
-        setSpecialInvitees([...specialInviteesArray]);
-        setUnavailableUsers([...unavailableArray, formInputs.userName.toUpperCase()])
+
+        setUnavailableUsers([...unavailableArray, formInputs.userName.toUpperCase()]);
+
+        if(availableUsers !== availableArray) {
+          setAvailableUsers([...availableArray]);
+        }
+        if(specialInvitees !== specialInviteesArray) {
+          setSpecialInvitees([...specialInviteesArray]);
+        }      
       }
   
       setUserName('');
@@ -107,9 +123,9 @@ export default function ViewEvent(props) {
         </form>
       </div>
       : <div className="feedback">
-        <h2>You're registered &#10004;</h2>
+        <h2>You're all set &#10004;</h2>
         <div>
-          Click <span onClick={() => setIsFormSubmitted(false)} style={{textDecoration: "underline", cursor:"pointer"}}>here</span> to change or RSVP for someone else.
+          Click <span onClick={() => setIsFormSubmitted(false)} style={{textDecoration: "underline", cursor:"pointer"}}>here</span> to make changes or RSVP for someone else.
         </div>
       </div>
       }
