@@ -7,6 +7,8 @@ export default function CreateEvent(props) {
   const [isEventCreated, setIsEventCreated] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
+  const [eventTemplate, setEventTemplate] = useState(0);
+
   const defaultEventInputs = {
     "eventOrganizer": 'Bhavin',
     "eventName": 'Volleyball',
@@ -84,6 +86,7 @@ export default function CreateEvent(props) {
       setIsFormValid(false)
     }
   }
+
   return (
     <div className="main main__CreateEvent">
       {
@@ -92,12 +95,20 @@ export default function CreateEvent(props) {
         <h1>Enter Event Details</h1>
         <form onSubmit={onSubmit} noValidate>
           <div>
+          <label htmlFor="eventTemplate">Event Template: </label>
+            <select name="availability" onChange={e => setEventTemplate(e.target.value)} defaultValue="" style={{width: "200px"}}>
+                  <option disabled value="">Select</option>
+                  <option value={0}>None</option>
+                  <option value={1}>Tigers Volleyball</option>
+            </select>
+          </div>
+          <div>
             <label htmlFor="eventOrganizer">Your Name: </label>
-            <input type="text" name="eventOrganizer" defaultValue={defaultEventInputs.eventOrganizer} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))}/>
+            <input type="text" name="eventOrganizer" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventOrganizer : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventName">Event Name: </label>
-            <input type="text" name="eventName" defaultValue={defaultEventInputs.eventName} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))}/>
+            <input type="text" name="eventName" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventName : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventDate">Date: </label>
@@ -113,7 +124,7 @@ export default function CreateEvent(props) {
           </div>
           <div>
             <label htmlFor="eventLocation">Location: </label>
-            <input type="address" name="eventLocation" defaultValue={defaultEventInputs.eventLocation} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
+            <input type="address" name="eventLocation" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventLocation : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
           </div>
           <button type="submit">Create</button>
           {
