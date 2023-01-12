@@ -1,70 +1,29 @@
-# Getting Started with Create React App
+# Jot - A Scheduling App
+Jot is a full stack event scheduling application made with React on the front-end and Node/Express on the back-end. It lets users create and share event details with their guests who can RSVP to the event. It also allows editing RSVP information and dynamically updates the RSVP information upon a change.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Published @ https://lil-white-shadow.github.io/jot-scheduling-app/#/
 
-## Available Scripts
+## Back-end repo @ https://github.com/lil-white-shadow/jot-backend-node
 
-In the project directory, you can run:
+## Images and Demo
 
-### `npm start`
+### RSVP Demo -- RSVP information updates instantaneously upon change
+[Tab-1673464983653.webm](https://user-images.githubusercontent.com/96262157/211899210-d04938fb-b7a1-4af2-a9a4-fbb7b75f09ac.webm)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Homepage
+![image](https://user-images.githubusercontent.com/96262157/211897582-15816f6e-6b61-4668-be1d-aecf1662c08a.png)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Create new event page
+![image](https://user-images.githubusercontent.com/96262157/211897653-3e4fd941-3450-4777-b507-40679868ec16.png)
 
-### `npm test`
+### View all events page
+![image](https://user-images.githubusercontent.com/96262157/211897756-0f0ccda0-29d6-4f10-b9db-17ceab56a990.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### RSVP page [view an event by eventId]
+![image](https://user-images.githubusercontent.com/96262157/211898068-1b2d07ac-3261-45e2-92e2-d9aca8bfa6cb.png)
 
-### `npm run build`
+### About page
+![image](https://user-images.githubusercontent.com/96262157/211898189-87883ed4-e4c8-4a2f-ae79-d7d78a5d3a80.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Create new event - mobile view
+![image](https://user-images.githubusercontent.com/96262157/211898292-14b9e8c0-4c9b-4b3c-b355-3fe065e18390.png)
