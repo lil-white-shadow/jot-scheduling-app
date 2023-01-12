@@ -56,11 +56,11 @@ export default function ViewAllEvents(props) {
               <span className="cardLineTitle">
               {event.eventId} - {event.eventName} on {event.eventDate} by {event.eventOrganizer}
               </span>
-              <button className="goToButton">
               <Link to={"/view-eventId=" + event.eventId}>
-                Go to event
+                <button className="goToButton">
+                  Go to event
+                </button>
               </Link>
-              </button>
             </div>
           )
         }
