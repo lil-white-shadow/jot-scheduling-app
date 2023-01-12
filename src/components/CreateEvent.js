@@ -10,12 +10,12 @@ export default function CreateEvent(props) {
   const [eventTemplate, setEventTemplate] = useState(0);
 
   const defaultEventInputs = {
-    "eventOrganizer": 'Bhavin',
-    "eventName": 'Volleyball',
+    "eventOrganizer": '',
+    "eventName": '',
     "eventDate": new Date().toLocaleDateString(),
     "eventStartTime": '07:30',
     "eventEndTime": '09:00',
-    "eventLocation": 'The Club at Prairie Stone, Hoffman Estates',
+    "eventLocation": '',
     "eventAttendees": [],
     "eventSpecialGuests": [],
     "eventNonAttendees": []
@@ -104,11 +104,11 @@ export default function CreateEvent(props) {
           </div>
           <div>
             <label htmlFor="eventOrganizer">Your Name: </label>
-            <input type="text" name="eventOrganizer" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventOrganizer : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))}/>
+            <input type="text" name="eventOrganizer" defaultValue={eventTemplate === "1" ? "Bhavin" : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventName">Event Name: </label>
-            <input type="text" name="eventName" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventName : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))}/>
+            <input type="text" name="eventName" defaultValue={eventTemplate === "1" ? "Volleyball" : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventDate">Date: </label>
@@ -116,23 +116,23 @@ export default function CreateEvent(props) {
           </div>
           <div>
             <label htmlFor="eventStartTime">Start: </label>
-            <input type="time" name="eventStartTime" defaultValue={defaultEventInputs.eventStartTime} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventStartTime:(e.target.value)}))}/>
+            <input type="time" name="eventStartTime" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventStartTime : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventStartTime:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventEndTime">End: </label>
-            <input type="time" name="eventEndTime" defaultValue={defaultEventInputs.eventEndTime} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventEndTime:(e.target.value)}))}/>
+            <input type="time" name="eventEndTime" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventEndTime : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventEndTime:(e.target.value)}))}/>
           </div>
           <div>
             <label htmlFor="eventLocation">Location: </label>
-            <input type="address" name="eventLocation" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventLocation : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
+            <input type="address" name="eventLocation" defaultValue={eventTemplate === "1" ? "Prairie Stone" : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
           </div>
-          <button type="submit">Create</button>
+          <button type="submit" disabled={!isFormValid}>Create</button>
           {
             isLoading ? <div id="loading"></div> : null
           }
           {
             !isFormValid ?
-            <span style={{fontWeight: "700", textDecoration: "underline"}}>Error! You must enter your name & availability.</span>
+            <span style={{fontWeight: "700", textDecoration: "underline"}}>Error - All fields are required.</span>
             : null
           }
         </form>
