@@ -21,6 +21,8 @@ export default function App() {
   const [newEventId, setNewEventId] = useState('');
   const [allEventIds, setAllEventIds] = useState([]);
 
+  const passcode = 'hunter2';
+
   useEffect(() => {
     fetch(API_ENDPOINT + "/api/ids")
       .then(response => response.json())
@@ -45,7 +47,7 @@ export default function App() {
           <Route
             // View All Events Page
             path={"view-all-events"}
-            element={<ViewAllEvents url={API_ENDPOINT}/>}
+            element={<ViewAllEvents url={API_ENDPOINT} passcode={passcode}/>}
           />
           {
             allEventIds.map(eventId => 

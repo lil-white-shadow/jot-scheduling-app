@@ -13,7 +13,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  overflow-x: hidden;
 }
 
 .App {
@@ -310,6 +309,7 @@ button.navActivePage:hover {
   padding: 0 5px 2px 5px;
 }
 
+/* loading icon */
 #loading {
   display: flex;
   align-self: center;
@@ -328,4 +328,28 @@ button.navActivePage:hover {
 }
 @-webkit-keyframes spin {
   to { -webkit-transform: rotate(360deg); }
+}
+
+/* authorizeViewAllEvents */
+.authorizeViewAllEvents {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 200px;
+  left: 0;
+  background-color: var(--primary);
+  opacity: 0.8;
+  border-radius: 30px;
+}
+
+.authorizeViewAllEvents input {
+  color: white;
+  width: min(300px, 80%);
+  font-size: min(2rem, 8vw);
+  align-self: center;
+  margin-top: 5rem;
+  text-align: center;
+  padding: 1rem;
 }
