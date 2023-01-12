@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 export default function CreateEvent(props) {
   
-  const [isEventCreated, setIsEventCreated] = useState(false);
   const [isFormValid, setIsFormValid] = useState(true);
+  const [isEventCreated, setIsEventCreated] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const defaultEventInputs = {
     "eventOrganizer": 'Bhavin',
@@ -49,6 +50,15 @@ export default function CreateEvent(props) {
         eventNonAttendees: currentEventInputs.eventNonAttendees
       })
     })
+      .then(() => {
+        
+        props.setNewEventId(arg);
+
+        setTimeout(() => {
+          setIsLoading(false);
+          setIsEventCreated(true);
+        }, 3000)
+      });
   }
 
   function onSubmit(e) {
@@ -60,13 +70,12 @@ export default function CreateEvent(props) {
       currentEventInputs.eventStartTime !== "" &&
       currentEventInputs.eventEndTime !== "" &&
       currentEventInputs.eventLocation !== "") {
-        
-      setIsEventCreated(true);
+      
+      setIsLoading(true);
       let newId = generateRandomId();
-      props.setNewEventId(newId);
+      postNewEvent(newId);
       
       // DO NOT USE postNewEvent(props.newEventId) as that still picks up empty string from original value set in App.js
-      postNewEvent(newId);
       
       props.setAllEventIds = [...props.setAllEventIds, newId]
     
@@ -107,6 +116,9 @@ export default function CreateEvent(props) {
             <input type="address" name="eventLocation" defaultValue={defaultEventInputs.eventLocation} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
           </div>
           <button type="submit">Create</button>
+          {
+            isLoading ? <div id="loading"></div> : null
+          }
           {
             !isFormValid ?
             <span style={{fontWeight: "700", textDecoration: "underline"}}>Error! You must enter your name & availability.</span>

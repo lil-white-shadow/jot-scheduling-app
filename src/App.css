@@ -309,3 +309,23 @@ button.navActivePage:hover {
   scale: 1.5;
   padding: 0 5px 2px 5px;
 }
+
+#loading {
+  display: flex;
+  align-self: center;
+  width: 40px;
+  height: 40px;
+  border: 5px solid var(--secondary);
+  border-radius: 50%;
+  border-top-color: var(--primary);
+  animation: spin 1s linear infinite;
+  -webkit-animation: spin 1s linear infinite;
+  margin-top: 1rem;
+}
+
+@keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
+@-webkit-keyframes spin {
+  to { -webkit-transform: rotate(360deg); }
+}
