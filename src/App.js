@@ -21,7 +21,7 @@ export default function App() {
   const [newEventId, setNewEventId] = useState('');
   const [allEventIds, setAllEventIds] = useState([]);
 
-  const passcode = 'hunter2';
+  const passcode = 'wakanda4ever';
 
   useEffect(() => {
     fetch(API_ENDPOINT + "/api/ids")

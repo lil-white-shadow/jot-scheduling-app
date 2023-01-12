@@ -2,7 +2,8 @@ import { Outlet, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function Layout(props) {
-  console.log(useLocation().pathname);
+  let bodyStyle = document.body.style;
+
   return(
     <div className="Header">
         <div className="navWrapper">
@@ -10,18 +11,26 @@ export default function Layout(props) {
             {props.title}
           </div>
           <div className="navButtonGroup">
-            <button className="returnHomeWrapper">
-              <Link to={"/"}>Home</Link>
-            </button>
-            <button className={useLocation().pathname === '/create-event' ? "navActivePage" : "returnHomeWrapper"}>
-              <Link to={"/create-event"}>Create New Event</Link>
-            </button>
-            <button className={useLocation().pathname === '/view-all-events' ? "navActivePage" : "returnHomeWrapper"}>
-              <Link to={"/view-all-events"}>View All Events</Link>
-            </button>
-            <button className={useLocation().pathname === '/about' ? "navActivePage" : "returnHomeWrapper"}>
-              <Link to={"/about"}>About</Link>
-            </button>
+            <Link to={"/"}>
+              <button className="returnHomeWrapper" onClick={() => bodyStyle.overflowY = "inherit"}>
+                Home
+              </button>
+            </Link>
+            <Link to={"/create-event"}>
+              <button className={useLocation().pathname === '/create-event' ? "navActivePage" : "returnHomeWrapper"} onClick={() => bodyStyle.overflowY = "inherit"}>
+                Create New Event
+              </button>
+            </Link>
+            <Link to={"/view-all-events"}>
+              <button className={useLocation().pathname === '/view-all-events' ? "navActivePage" : "returnHomeWrapper"}>
+                View All Events
+              </button>
+            </Link>
+            <Link to={"/about"}>
+              <button className={useLocation().pathname === '/about' ? "navActivePage" : "returnHomeWrapper"} onClick={() => bodyStyle.overflowY = "inherit"}>
+              About
+              </button>
+            </Link>
           </div>
         </div>
       <Outlet />

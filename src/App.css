@@ -133,7 +133,7 @@ button.returnHomeWrapper:hover {
   background-color: var(--primary);
 }
 
-button.returnHomeWrapper:hover a {
+a button.returnHomeWrapper:hover {
   color: var(--secondary);
 }
 
@@ -147,7 +147,7 @@ button.navActivePage {
   cursor: not-allowed;
 }
 
-button.navActivePage a {
+a button.navActivePage {
   color: var(--secondary);
   cursor: not-allowed;
 }
