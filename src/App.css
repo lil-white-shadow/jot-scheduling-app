@@ -196,6 +196,7 @@ button.navActivePage:hover {
   font-size: min(2rem, 7.5vw);
   font-family: 'Permanent Marker', cursive;
   font-weight: 100;
+  margin-bottom: 2rem;
 }
 
 .main h2 {
@@ -300,7 +301,7 @@ button.navActivePage:hover {
   gap: 5px;
   font-size: min(5vw, 1.2rem);
   padding-top: 2rem;
-  margin-bottom: 0;
+  margin-bottom: 2px;
 }
 
 .heartIcon {
@@ -352,4 +353,20 @@ button.navActivePage:hover {
   margin-top: 5rem;
   text-align: center;
   padding: 1rem;
+}
+
+button.specialButton {
+  /* margin: 0 auto; */
+  padding: 8px 16px;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: 3px 3px 8px #ff69b4, -3px -3px 8px #663399;
+  box-shadow: 3px 3px 8px var(--primary), -3px -3px 8px var(--secondary);
+  color: white;
+  background: rgb(102,51,153);
+  background: linear-gradient(48deg, rgba(102,51,153,1) 0%, rgba(255,105,180,1) 100%);
+}
+
+a button.specialButton:hover {
+  color: white;
 }
