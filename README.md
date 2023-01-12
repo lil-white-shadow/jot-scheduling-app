@@ -10,6 +10,9 @@ Jot is a full stack event scheduling application made with React on the front-en
 ### RSVP Demo -- RSVP information updates instantaneously upon change
 [Tab-1673464983653.webm](https://user-images.githubusercontent.com/96262157/211899210-d04938fb-b7a1-4af2-a9a4-fbb7b75f09ac.webm)
 
+### View All Events Demo - Page is protected and scroll disabled until passcode is entered
+[Tab-1673514946397.webm](https://user-images.githubusercontent.com/96262157/212027097-8529258c-9609-42b5-bbc9-029b8a1ac30a.webm)
+
 ### Homepage
 ![image](https://user-images.githubusercontent.com/96262157/211897582-15816f6e-6b61-4668-be1d-aecf1662c08a.png)
 
