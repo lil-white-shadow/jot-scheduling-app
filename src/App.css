@@ -348,7 +348,7 @@ button.navActivePage:hover {
 .authorizeViewAllEvents input {
   color: white;
   width: min(300px, 80%);
-  font-size: min(2rem, 8vw);
+  font-size: min(1.5rem, 6vw);
   align-self: center;
   margin-top: 5rem;
   text-align: center;

@@ -22,8 +22,6 @@ export default function App() {
   const [newEventId, setNewEventId] = useState('');
   const [allEventIds, setAllEventIds] = useState([]);
 
-  const passcode = 'wakanda4ever';
-
   useEffect(() => {
     fetch(API_ENDPOINT + "/api/ids")
       .then(response => response.json())
@@ -48,7 +46,7 @@ export default function App() {
           <Route
             // View All Events Page
             path={"view-all-events"}
-            element={<ViewAllEvents url={API_ENDPOINT} allEventIds={allEventIds} passcode={passcode}/>}
+            element={<ViewAllEvents url={API_ENDPOINT} allEventIds={allEventIds}/>}
           />
           {
             allEventIds.map(eventId => 

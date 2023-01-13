@@ -44,7 +44,7 @@ export default function ViewAllEvents(props) {
 
   function checkInput(input) {
 
-    if(input === props.passcode) {
+    if(input === "benstokes") {
       setIsLoading(true);
       setIsAdmin(true);
 
@@ -87,6 +87,9 @@ export default function ViewAllEvents(props) {
   <div className="main main__ViewCurrentEvents card">
       <h1>{props.allEventIds.length} Events in progress</h1>
       {
+        isAuthorized ? <h2>Here is your event!</h2> : null
+      }
+      {
         isLoading && (isAdmin || isAuthorized) ? <div id="loading"></div>
         :
         <div className="cardLineGroup">
@@ -106,9 +109,10 @@ export default function ViewAllEvents(props) {
         </div>
       }
       {
-        input !== props.passcode ?
+        !isAdmin && !isAuthorized ?
         <div className="authorizeViewAllEvents">
-          <input type="password" onChange={(e)=> setInput(e.target.value)} placeholder="Enter Secret Key"/>
+          <h2 style={{color: "white", padding: "0 3rem", marginTop: "8rem", marginBottom: "-3rem", textAlign: 'center'}}>Enter Event ID to view a specific event or the Secret Key to view all events.</h2>
+          <input style={{borderBottom: '2px solid white'}} type="password" onChange={(e)=> setInput(e.target.value)} placeholder="Secret Key or Event Id"/>
         </div>
         : null
       }
