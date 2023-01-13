@@ -12,9 +12,9 @@ export default function CreateEvent(props) {
   const defaultEventInputs = {
     "eventOrganizer": '',
     "eventName": '',
-    "eventDate": '',
-    "eventStartTime": '',
-    "eventEndTime": '',
+    "eventDate": new Date().toLocaleDateString(),
+    "eventStartTime": '07:30',
+    "eventEndTime": '09:00',
     "eventLocation": '',
     "eventAttendees": [],
     "eventSpecialGuests": [],
@@ -24,7 +24,7 @@ export default function CreateEvent(props) {
   const tigersVolleyballdefaultEventInputs = {
     "eventOrganizer": 'Bhavin',
     "eventName": 'Volleyball',
-    "eventDate": '',
+    "eventDate": new Date().toLocaleDateString(),
     "eventStartTime": '07:30',
     "eventEndTime": '09:00',
     "eventLocation": 'Prairie Stone',
@@ -79,7 +79,7 @@ export default function CreateEvent(props) {
 
     setEventTemplate(e.target.value);
     setIsFormValid(true);
-    if(e.target.value === "1") {
+    if(e.target.value === 1) {
       setCurrentEventInputs(tigersVolleyballdefaultEventInputs)
     }
   }
@@ -123,6 +123,10 @@ export default function CreateEvent(props) {
   function onSubmit(e) {
     e.preventDefault();
 
+    if(eventTemplate === "1") {
+      setCurrentEventInputs(tigersVolleyballdefaultEventInputs);
+    }
+
     if(currentEventInputs.eventOrganizer !== "" && 
       currentEventInputs.eventName !== "" &&
       currentEventInputs.eventDate !== "" &&
@@ -153,7 +157,8 @@ export default function CreateEvent(props) {
         <form id="createEventForm" onSubmit={onSubmit} noValidate>
           <div>
           <label htmlFor="eventTemplate">Event Template: </label>
-            <select name="availability" onChange={e => onTemplateSelect(e)} defaultValue={0} style={{width: "200px"}}>
+            <select name="availability" onChange={e => onTemplateSelect(e)} defaultValue="" style={{width: "200px"}}>
+                  <option disabled value="">Select</option>
                   <option value={0}>None</option>
                   <option value={1}>Tigers Volleyball</option>
             </select>

@@ -4,32 +4,14 @@ import { useEffect, useState } from "react";
 export default function ViewAllEvents(props) {
 
   const [input, setInput] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
   const [isAuthorized, setIsAuthorized] = useState(false);
-
   const [currentEvents, setCurrentEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
 
-    if(isAdmin) {
-      fetch(props.url + "/api/events")
-      .then(response => response.json())
-      .then(data => setCurrentEvents(data))
-      .then(() => {
-        
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 3000)
-      })
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isAdmin])
-
-  useEffect(() => {
-
     if(isAuthorized) {
-      fetch(props.url + "/api/events/" + input)
+      fetch(props.url + "/api/events")
       .then(response => response.json())
       .then(data => setCurrentEvents(data))
       .then(() => {
@@ -43,20 +25,7 @@ export default function ViewAllEvents(props) {
   }, [isAuthorized])
 
   function checkInput(input) {
-
     if(input === props.passcode) {
-      setIsLoading(true);
-      setIsAdmin(true);
-
-      // undo blur background effect
-      document.body.style.overflowY = "inherit";
-      document.getElementsByClassName("cardLineGroup")[0].style.filter = "none";
-      document.getElementsByClassName("cardLineGroup")[0].style.pointerEvents = "auto";
-    }
-
-    if((props.allEventIds).indexOf(input) > -1) {
-      console.log(props.allEventIds.indexOf(input))
-      console.log('auth errorr')
       setIsLoading(true);
       setIsAuthorized(true);
 
@@ -87,7 +56,7 @@ export default function ViewAllEvents(props) {
   <div className="main main__ViewCurrentEvents card">
       <h1>{props.allEventIds.length} Events in progress</h1>
       {
-        isLoading && (isAdmin || isAuthorized) ? <div id="loading"></div>
+        isLoading && isAuthorized ? <div id="loading"></div>
         :
         <div className="cardLineGroup">
           {
@@ -112,6 +81,9 @@ export default function ViewAllEvents(props) {
         </div>
         : null
       }
+      <div className="cardLineGroup">
+
+      </div>
   </div>
   )
 }
