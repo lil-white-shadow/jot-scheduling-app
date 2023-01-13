@@ -21,6 +21,18 @@ export default function CreateEvent(props) {
     "eventNonAttendees": []
   }
 
+  const tigersVolleyballdefaultEventInputs = {
+    "eventOrganizer": 'Bhavin',
+    "eventName": 'Volleyball',
+    "eventDate": new Date().toLocaleDateString(),
+    "eventStartTime": '07:30',
+    "eventEndTime": '09:00',
+    "eventLocation": 'Prairie Stone',
+    "eventAttendees": [],
+    "eventSpecialGuests": [],
+    "eventNonAttendees": []
+  }
+
   const [currentEventInputs, setCurrentEventInputs] = useState(defaultEventInputs);
 
   function generateRandomId() {
@@ -63,8 +75,57 @@ export default function CreateEvent(props) {
       });
   }
 
+  function onTemplateSelect(e) {
+
+    setEventTemplate(e.target.value);
+    setIsFormValid(true);
+    if(e.target.value === 1) {
+      setCurrentEventInputs(tigersVolleyballdefaultEventInputs)
+    }
+  }
+
+  function onInput(e, index) {
+
+    setIsFormValid(true);
+    console.log(e.target)
+    switch (index) {
+      case 0:
+        setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))  
+        break;
+  
+      case 1:
+        setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))  
+        break;
+
+      case 2:
+        setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventDate:(e.target.value)}))  
+        break;
+
+
+      case 3:
+        setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventStartTime:(e.target.value)}))  
+        break;
+
+      case 4:
+        setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventEndTime:(e.target.value)}))  
+        break;
+
+      case 5:
+        setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))  
+        break;
+      
+      default:
+        break;
+    }
+
+  }
+
   function onSubmit(e) {
     e.preventDefault();
+
+    if(eventTemplate === "1") {
+      setCurrentEventInputs(tigersVolleyballdefaultEventInputs);
+    }
 
     if(currentEventInputs.eventOrganizer !== "" && 
       currentEventInputs.eventName !== "" &&
@@ -93,10 +154,10 @@ export default function CreateEvent(props) {
         !isEventCreated ?
         <div>
         <h1>Enter Event Details</h1>
-        <form onSubmit={onSubmit} noValidate>
+        <form id="createEventForm" onSubmit={onSubmit} noValidate>
           <div>
           <label htmlFor="eventTemplate">Event Template: </label>
-            <select name="availability" onChange={e => setEventTemplate(e.target.value)} defaultValue="" style={{width: "200px"}}>
+            <select name="availability" onChange={e => onTemplateSelect(e)} defaultValue="" style={{width: "200px"}}>
                   <option disabled value="">Select</option>
                   <option value={0}>None</option>
                   <option value={1}>Tigers Volleyball</option>
@@ -104,27 +165,27 @@ export default function CreateEvent(props) {
           </div>
           <div>
             <label htmlFor="eventOrganizer">Your Name: </label>
-            <input type="text" name="eventOrganizer" defaultValue={eventTemplate === "1" ? "Bhavin" : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventOrganizer:(e.target.value)}))}/>
+            <input type="text" name="eventOrganizer" defaultValue={eventTemplate === "1" ? tigersVolleyballdefaultEventInputs.eventOrganizer : defaultEventInputs.eventOrganizer} onChange={e => onInput(e, 0)}/>
           </div>
           <div>
             <label htmlFor="eventName">Event Name: </label>
-            <input type="text" name="eventName" defaultValue={eventTemplate === "1" ? "Volleyball" : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventName:(e.target.value)}))}/>
+            <input type="text" name="eventName" defaultValue={eventTemplate === "1" ? tigersVolleyballdefaultEventInputs.eventName : defaultEventInputs.eventName} onChange={e => onInput(e, 1)}/>
           </div>
           <div>
             <label htmlFor="eventDate">Date: </label>
-            <input type="date" name="eventDate" defaultValue={defaultEventInputs.eventDate} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventDate:(e.target.value)}))}/>
+            <input type="date" name="eventDate" defaultValue={eventTemplate === "1" ? tigersVolleyballdefaultEventInputs.eventDate : defaultEventInputs.eventDate} onChange={e => onInput(e, 2)}/>
           </div>
           <div>
             <label htmlFor="eventStartTime">Start: </label>
-            <input type="time" name="eventStartTime" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventStartTime : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventStartTime:(e.target.value)}))}/>
+            <input type="time" name="eventStartTime" defaultValue={eventTemplate === "1" ? tigersVolleyballdefaultEventInputs.eventStartTime : defaultEventInputs.eventStartTime} onChange={e => onInput(e, 3)}/>
           </div>
           <div>
             <label htmlFor="eventEndTime">End: </label>
-            <input type="time" name="eventEndTime" defaultValue={eventTemplate === "1" ? defaultEventInputs.eventEndTime : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventEndTime:(e.target.value)}))}/>
+            <input type="time" name="eventEndTime" defaultValue={eventTemplate === "1" ? tigersVolleyballdefaultEventInputs.eventEndTime : defaultEventInputs.eventEndTime} onChange={e => onInput(e, 4)}/>
           </div>
           <div>
             <label htmlFor="eventLocation">Location: </label>
-            <input type="address" name="eventLocation" defaultValue={eventTemplate === "1" ? "Prairie Stone" : null} onChange={e => setCurrentEventInputs(Object.assign({}, currentEventInputs, {eventLocation:(e.target.value)}))}/>
+            <input type="address" name="eventLocation" defaultValue={eventTemplate === "1" ? tigersVolleyballdefaultEventInputs.eventLocation : defaultEventInputs.eventLocation} onChange={e => onInput(e, 5)}/>
           </div>
           <button type="submit" disabled={!isFormValid}>Create</button>
           {
