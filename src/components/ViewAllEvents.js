@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 export default function ViewAllEvents(props) {
 
   const [input, setInput] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(true);
   const [isAuthorized, setIsAuthorized] = useState(false);
 
   const [currentEvents, setCurrentEvents] = useState([]);
@@ -74,7 +74,7 @@ export default function ViewAllEvents(props) {
   }
 
   useEffect(() => {
-    blurBackground()
+    // blurBackground()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
