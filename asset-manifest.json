@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/jot-scheduling-app/static/css/main.78622101.css",
-    "main.js": "/jot-scheduling-app/static/js/main.b50202ec.js",
+    "main.css": "/jot-scheduling-app/static/css/main.e29c922f.css",
+    "main.js": "/jot-scheduling-app/static/js/main.1b1ada3a.js",
     "static/js/787.226fc53b.chunk.js": "/jot-scheduling-app/static/js/787.226fc53b.chunk.js",
     "index.html": "/jot-scheduling-app/index.html",
-    "main.78622101.css.map": "/jot-scheduling-app/static/css/main.78622101.css.map",
-    "main.b50202ec.js.map": "/jot-scheduling-app/static/js/main.b50202ec.js.map",
+    "main.e29c922f.css.map": "/jot-scheduling-app/static/css/main.e29c922f.css.map",
+    "main.1b1ada3a.js.map": "/jot-scheduling-app/static/js/main.1b1ada3a.js.map",
     "787.226fc53b.chunk.js.map": "/jot-scheduling-app/static/js/787.226fc53b.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.78622101.css",
-    "static/js/main.b50202ec.js"
+    "static/css/main.e29c922f.css",
+    "static/js/main.1b1ada3a.js"
   ]
 }
