@@ -145,7 +145,7 @@ export default function ViewEvent(props) {
             </select>
           </div>
           <div className="cardLine">
-            <label htmlFor="guestStatus" className="cardLineTitle">Guest?: </label>
+            <label htmlFor="guestStatus" className="cardLineTitle">Are you a non-member (guest)?: </label>
             <input type="checkbox" name="guestStatus" onChange={e => setGuestStatus(e.target.value)}/>
           </div>
           <div className="cardLine">
@@ -165,7 +165,7 @@ export default function ViewEvent(props) {
       </div>
       }
       <div className="card">
-        <h2>{availableUsers.length} members & {specialInvitees.length} guest(s)</h2>
+        <h2>{availableUsers.length} members & {specialInvitees.length} guests</h2>
         <div className="cardLineGroup">
           <div className="cardLine cardLineVertical">
             <div className="cardLineTitle">Members: </div>
