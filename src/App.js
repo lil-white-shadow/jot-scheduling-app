@@ -47,7 +47,7 @@ export default function App() {
           <Route
             // View All Events Page
             path={"view-all-events"}
-            element={<ViewAllEvents url={API_ENDPOINT} passcode={passcode}/>}
+            element={<ViewAllEvents url={API_ENDPOINT} allEventIds={allEventIds} passcode={passcode}/>}
           />
           {
             allEventIds.map(eventId => 

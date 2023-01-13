@@ -4,19 +4,32 @@ import { useEffect, useState } from "react";
 export default function ViewAllEvents(props) {
 
   const [input, setInput] = useState('');
+  const [isAuthorized, setIsAuthorized] = useState(false);
   const [currentEvents, setCurrentEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    fetch(props.url + "/api/events")
+
+    if(isAuthorized) {
+      fetch(props.url + "/api/events")
       .then(response => response.json())
       .then(data => setCurrentEvents(data))
+      .then(() => {
+        
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 3000)
+      })
+    }
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [isAuthorized])
 
   function checkInput(input) {
     if(input === props.passcode) {
-      // undo blur background effect
+      setIsLoading(true);
+      setIsAuthorized(true);
 
+      // undo blur background effect
       document.body.style.overflowY = "inherit";
       document.getElementsByClassName("cardLineGroup")[0].style.filter = "none";
       document.getElementsByClassName("cardLineGroup")[0].style.pointerEvents = "auto";
@@ -32,7 +45,7 @@ export default function ViewAllEvents(props) {
   useEffect(() => {
     blurBackground()
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  })
+  }, [])
 
   useEffect(() => {
     checkInput(input);
@@ -41,16 +54,12 @@ export default function ViewAllEvents(props) {
 
   return (
   <div className="main main__ViewCurrentEvents card">
-      <h1>{currentEvents.length} Events in progress</h1>
+      <h1>{props.allEventIds.length} Events in progress</h1>
       {
-        input !== props.passcode ?
-        <div className="authorizeViewAllEvents">
-          <input type="password" onChange={(e)=> setInput(e.target.value)} placeholder="Enter Secret Key"/>
-        </div>
-        : null
-      }
-      <div className="cardLineGroup">
-        {
+        isLoading && isAuthorized ? <div id="loading"></div>
+        :
+        <div className="cardLineGroup">
+          {
           currentEvents.map(event =>
             <div key={event.eventId} className="cardLine">
               <span className="cardLineTitle">
@@ -62,8 +71,18 @@ export default function ViewAllEvents(props) {
                 </button>
               </Link>
             </div>
-          )
-        }
+          )}
+        </div>
+      }
+      {
+        input !== props.passcode ?
+        <div className="authorizeViewAllEvents">
+          <input type="password" onChange={(e)=> setInput(e.target.value)} placeholder="Enter Secret Key"/>
+        </div>
+        : null
+      }
+      <div className="cardLineGroup">
+
       </div>
   </div>
   )
