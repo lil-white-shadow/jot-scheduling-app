@@ -32,32 +32,21 @@ export default function ViewEvent(props) {
       .then(response => response.json())
       .then(data => {
         setCurrentEvent(data[0]);
-      })
-      .then(() => {
-
         // remove duplicate name if present in any category
-        let availableArray = currentEvent.eventAttendees.filter(name => name !== formInputs.userName.toUpperCase());
-        let specialInviteesArray = currentEvent.eventSpecialGuests.filter(name => name !== formInputs.userName.toUpperCase());
-        let unavailableArray = currentEvent.eventNonAttendees.filter(name => name !== formInputs.userName.toUpperCase());
+        let availableArray = data[0].eventAttendees.filter(name => name !== formInputs.userName.toUpperCase());
+        let specialInviteesArray = data[0].eventSpecialGuests.filter(name => name !== formInputs.userName.toUpperCase());
+        let unavailableArray = data[0].eventNonAttendees.filter(name => name !== formInputs.userName.toUpperCase());
   
+
         // add name to the applicable category
-        if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
-  
-          currentEvent.eventAttendees = [...availableArray, formInputs.userName.toUpperCase()];
-          currentEvent.eventSpecialGuests = [...specialInviteesArray];
-          currentEvent.eventNonAttendees = [...unavailableArray];
-  
-        } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
-          
-          currentEvent.eventAttendees = [...availableArray];
-          currentEvent.eventSpecialGuests = [...specialInviteesArray, formInputs.userName.toUpperCase()];
-          currentEvent.eventNonAttendees = [...unavailableArray];
-  
+        if(formInputs.availability === 'Yes') {
+          if(formInputs.guestStatus === 'off') {
+            availableArray = [...availableArray, formInputs.userName.toUpperCase()];
+          } else {
+            specialInviteesArray = [...specialInviteesArray, formInputs.userName.toUpperCase()];
+          }
         } else {
-  
-          currentEvent.eventAttendees = [...availableArray];
-          currentEvent.eventSpecialGuests = [...specialInviteesArray];
-          currentEvent.eventNonAttendees = [...unavailableArray, formInputs.userName.toUpperCase()];  
+          unavailableArray  = [...unavailableArray, formInputs.userName.toUpperCase()];  
         }
   
         // send updated RSVP to server
@@ -65,9 +54,9 @@ export default function ViewEvent(props) {
           method: 'PATCH',
           headers:{'content-type': 'application/json'},
           body: JSON.stringify({
-            eventAttendees: currentEvent.eventAttendees,
-            eventSpecialGuests: currentEvent.eventSpecialGuests,
-            eventNonAttendees: currentEvent.eventNonAttendees
+            eventAttendees: availableArray,
+            eventSpecialGuests: specialInviteesArray,
+            eventNonAttendees: unavailableArray
           })
         })
         .then(() => {
