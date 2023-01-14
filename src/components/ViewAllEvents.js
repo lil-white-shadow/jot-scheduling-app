@@ -44,7 +44,7 @@ export default function ViewAllEvents(props) {
 
   function checkInput(input) {
 
-    if(input === "benstokes") {
+    if(input === process.env.REACT_APP_NOT_SECRET_CODE) {
       setIsLoading(true);
       setIsAdmin(true);
 
