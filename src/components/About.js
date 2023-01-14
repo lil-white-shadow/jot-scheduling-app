@@ -3,13 +3,16 @@ import { Link } from "react-router-dom";
 export default function About() {
   return(
     <div className="main">
-      <h1>Our Promise</h1>
-      <p><b>JOT</b> is the easiest way on the internet to schedule your next event. While designed for simplicity, it has all the features you have ever wanted and none of the clutter like some other applications.</p>
+      <h1>Our Philosophy</h1>
+      <p>We know how daunting it can be to plan an event - from booking a venue, to deciding the menu, and putting up decorations - it can feel like a neverending list of chores.  We believe that managing the guest list should be the least of your concerns when you plan an event. That's why we created <b>JOT</b>.</p>
       <p>
-        If you insist on creating an account and giving your email, phone or credit card information, then <b>JOT</b> is <span style={{textDecoration: "underline"}}>not</span> for you.
+        <b>JOT</b> offers a streamlined approach to creating, managing, and sharing your event - all in one place. JOT is all about simplicity and ease of use. It is so simple, you don't even need to provide your phone or email. With no hoops to jump through, JOT will allow you to spend your time doing what you do best - organize the best event you possibly can.
       </p>
       <p>
-        Yes, you read that right, what are you waiting for? Let's get your next party scheduled...
+        If you insist on creating an account and giving your email, phone, address, and credit card information, then <b>JOT</b> is <span style={{textDecoration: "underline"}}>not</span> for you. But if you like to keeps things simple, you'll fit right in!
+      </p>
+      <p>
+        What are you waiting for? Click the button below and let's get your next event scheduled with <b>JOT</b>.
       </p>
       <Link to={"/create-event"}>
           <button className="returnHomeWrapper specialButton" style={{marginTop: "2rem"}}>
