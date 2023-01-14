@@ -21,11 +21,11 @@ export default function Layout(props) {
                 Create New Event
               </button>
             </Link>
-            <Link to={"/view-all-events"}>
+            {/* <Link to={"/view-all-events"}>
               <button className={useLocation().pathname === '/view-all-events' ? "navActivePage" : "returnHomeWrapper"}>
                 View All Events
               </button>
-            </Link>
+            </Link> */}
             <Link to={"/about"}>
               <button className={useLocation().pathname === '/about' ? "navActivePage" : "returnHomeWrapper"} onClick={() => bodyStyle.overflowY = "inherit"}>
               About

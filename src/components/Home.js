@@ -11,9 +11,9 @@ export default function Home(props) {
         <Link to={"create-event"}>
           <button>Create New Event</button>
         </Link>
-        <Link to={"view-all-events"}>
+        {/* <Link to={"view-all-events"}>
           <button>View All Events</button>
-        </Link>
+        </Link> */}
         <Link to={"about"}>
           <button className="aboutButton">About</button>
         </Link>
