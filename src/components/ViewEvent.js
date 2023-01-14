@@ -27,57 +27,81 @@ export default function ViewEvent(props) {
       setIsFormValid(true);
       setIsSendingRSVP(true);
 
-      let availableArray = currentEvent.eventAttendees.filter(name => name !== formInputs.userName.toUpperCase());
-      let specialInviteesArray = currentEvent.eventSpecialGuests.filter(name => name !== formInputs.userName.toUpperCase());
-      let unavailableArray = currentEvent.eventNonAttendees.filter(name => name !== formInputs.userName.toUpperCase());
-
-      if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
-
-        currentEvent.eventAttendees = [...availableArray, formInputs.userName.toUpperCase()];
-        currentEvent.eventSpecialGuests = [...specialInviteesArray];
-        currentEvent.eventNonAttendees = [...unavailableArray];
-
-      } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
-        
-        currentEvent.eventAttendees = [...availableArray];
-        currentEvent.eventSpecialGuests = [...specialInviteesArray, formInputs.userName.toUpperCase()];
-        currentEvent.eventNonAttendees = [...unavailableArray];
-
-      } else {
-
-        currentEvent.eventAttendees = [...availableArray];
-        currentEvent.eventSpecialGuests = [...specialInviteesArray];
-        currentEvent.eventNonAttendees = [...unavailableArray, formInputs.userName.toUpperCase()];  
-      }
-
-      fetch(props.url + '/api/events/' + props.eventId, {
-        method: 'PATCH',
-        headers:{'content-type': 'application/json'},
-        body: JSON.stringify({
-          eventAttendees: currentEvent.eventAttendees,
-          eventSpecialGuests: currentEvent.eventSpecialGuests,
-          eventNonAttendees: currentEvent.eventNonAttendees
-        })
-      }).then(() => {
-        setTimeout(() => setIsSendingRSVP(false), 2000)
+      // request event data from server - again - to check for any updates since initial page load
+      fetch(props.url + "/api/events/" + props.eventId)
+      .then(response => response.json())
+      .then(data => {
+        setCurrentEvent(data[0]);
       })
+      .then(() => {
 
-      setUserName('');
-      setAvailability(undefined);
-      setGuestStatus('off');
+        // remove duplicate name if present in any category
+        let availableArray = currentEvent.eventAttendees.filter(name => name !== formInputs.userName.toUpperCase());
+        let specialInviteesArray = currentEvent.eventSpecialGuests.filter(name => name !== formInputs.userName.toUpperCase());
+        let unavailableArray = currentEvent.eventNonAttendees.filter(name => name !== formInputs.userName.toUpperCase());
+  
+        // add name to the applicable category
+        if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'off') {
+  
+          currentEvent.eventAttendees = [...availableArray, formInputs.userName.toUpperCase()];
+          currentEvent.eventSpecialGuests = [...specialInviteesArray];
+          currentEvent.eventNonAttendees = [...unavailableArray];
+  
+        } else if(formInputs.availability === 'Yes' && formInputs.guestStatus === 'on') {
+          
+          currentEvent.eventAttendees = [...availableArray];
+          currentEvent.eventSpecialGuests = [...specialInviteesArray, formInputs.userName.toUpperCase()];
+          currentEvent.eventNonAttendees = [...unavailableArray];
+  
+        } else {
+  
+          currentEvent.eventAttendees = [...availableArray];
+          currentEvent.eventSpecialGuests = [...specialInviteesArray];
+          currentEvent.eventNonAttendees = [...unavailableArray, formInputs.userName.toUpperCase()];  
+        }
+  
+        // send updated RSVP to server
+        fetch(props.url + '/api/events/' + props.eventId, {
+          method: 'PATCH',
+          headers:{'content-type': 'application/json'},
+          body: JSON.stringify({
+            eventAttendees: currentEvent.eventAttendees,
+            eventSpecialGuests: currentEvent.eventSpecialGuests,
+            eventNonAttendees: currentEvent.eventNonAttendees
+          })
+        })
+        .then(() => {
+          // request event data from server to update view
+          fetch(props.url + "/api/events/" + props.eventId)
+          .then(response => response.json())
+          .then(data => {
+            setCurrentEvent(data[0]);
+          })
+        })
+        .then(() => {
+          setTimeout(() => setIsSendingRSVP(false), 2000)
+        })
+  
+        setUserName('');
+        setAvailability(undefined);
+        setGuestStatus('off');
+
+      })
       
     } else {
       setIsFormValid(false);
     }
   }
 
-  // get event details
+  // request event data on initial page load
   useEffect(() => {
     fetch(props.url + "/api/events/" + props.eventId)
       .then(response => response.json())
       .then(data => {
-        setCurrentEvent(data[0]);
-        setTimeout(() => setIsLoading(false), 2000)
+        if(data[0] !== currentEvent) {
+          setCurrentEvent(data[0]);
+          setTimeout(() => setIsLoading(false), 2000)
+        }
       })
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
@@ -91,7 +115,7 @@ export default function ViewEvent(props) {
         <>
           <h1>You've been invited!</h1>
           <div className="card">
-            <h2>Event: {currentEvent.eventName}</h2>
+            <h2>{currentEvent.eventName} ({currentEvent.eventAttendees.length + currentEvent.eventSpecialGuests.length} attendees)</h2>
             <div className="cardLine">
               <div className="cardLineTitle">Date: </div>
               <div className="cardLineContent">{currentEvent.eventDate}</div>
@@ -168,7 +192,10 @@ export default function ViewEvent(props) {
                 ) : null}
               </form>
             </div>
-          ) : (
+          ) : null
+          }
+          {
+            isFormSubmitted && isFormValid && !isSendingRSVP ? 
             <div className="feedback">
               <h2>You're all set &#10004;</h2>
               <div>
@@ -181,20 +208,17 @@ export default function ViewEvent(props) {
                 </span>{" "}
                 to make changes or RSVP for someone else.
               </div>
-            </div>
-          )}
+            </div> : null
+          }
           {
           isSendingRSVP ? 
             <div id="loading"></div>
           :
             <div className="card">
-              <h2>
-                {currentEvent.eventAttendees.length} members &{" "}
-                {currentEvent.eventSpecialGuests.length} guests
-              </h2>
-              <div className="cardLineGroup">
+              <h2>RSVP Details</h2>
+              <div className="cardLineGroup cardLineGroupVertical">
                 <div className="cardLine cardLineVertical">
-                  <div className="cardLineTitle">Members: </div>
+                  <div className="cardLineTitle">Members - {currentEvent.eventAttendees.length}</div>
                   <ul>
                     {currentEvent.eventAttendees.map((user) => (
                       <li key={user}>{user} </li>
@@ -202,7 +226,7 @@ export default function ViewEvent(props) {
                   </ul>
                 </div>
                 <div className="cardLine cardLineVertical">
-                  <div className="cardLineTitle">Guests: </div>
+                  <div className="cardLineTitle">Guests - {currentEvent.eventSpecialGuests.length}</div>
                   <ul>
                     {currentEvent.eventSpecialGuests.map((user) => (
                       <li key={user}>{user}</li>
@@ -210,7 +234,7 @@ export default function ViewEvent(props) {
                   </ul>
                 </div>
                 <div className="cardLine cardLineVertical">
-                  <div className="cardLineTitle">Unavailable: </div>
+                  <div className="cardLineTitle">Unavailable - {currentEvent.eventNonAttendees.length}</div>
                   <ul>
                     {currentEvent.eventNonAttendees.map((user) => (
                       <li key={user}>{user}</li>
