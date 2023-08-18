@@ -41,12 +41,12 @@ export default function ViewEvent(props) {
         // add name to the applicable category
         if(formInputs.availability === 'Yes') {
           if(formInputs.guestStatus === 'off') {
-            availableArray = [...availableArray, formInputs.userName.toUpperCase()];
+            availableArray = [...availableArray, formInputs.userName.toUpperCase().trim()];
           } else {
-            specialInviteesArray = [...specialInviteesArray, formInputs.userName.toUpperCase()];
+            specialInviteesArray = [...specialInviteesArray, formInputs.userName.toUpperCase().trim()];
           }
         } else {
-          unavailableArray  = [...unavailableArray, formInputs.userName.toUpperCase()];  
+          unavailableArray  = [...unavailableArray, formInputs.userName.toUpperCase().trim()];  
         }
   
         // send updated RSVP to server
