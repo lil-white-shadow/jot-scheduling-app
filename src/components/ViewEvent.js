@@ -133,7 +133,7 @@ export default function ViewEvent(props) {
             <div className="cardLine">
               <div className="cardLineTitle">Date: </div>
               <div className="cardLineContent">
-                {currentEvent.eventDate}, {getDay(currentEvent.eventDate)}
+                {getDay(currentEvent.eventDate)} ~ {currentEvent.eventDate}
               </div>
             </div>
             <div className="cardLine">
