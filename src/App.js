@@ -16,7 +16,7 @@ export default function App() {
   const tagline = "Scheduling made easy";
 
   // const API_ENDPOINT = "http://localhost:3001";
-  const API_ENDPOINT = "https://jot-api-service.onrender.com";
+  const API_ENDPOINT = "https://jot-backend-node.onrender.com";
 
 
   const [newEventId, setNewEventId] = useState('');
