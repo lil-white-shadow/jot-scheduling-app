@@ -61,6 +61,7 @@
 .App input, .App select {
   background-color: transparent;
   border: none;
+  border-radius: 0;
   outline: none;
   border-bottom: 2px solid var(--primary);
   height: 2rem;
