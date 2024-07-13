@@ -15,7 +15,7 @@ export default function App() {
   const tagline = "Scheduling made easy";
 
   // const API_ENDPOINT = "http://localhost:3001";
-  const API_ENDPOINT = "https://jot-backend-node.vercel.app/";
+  const API_ENDPOINT = "https://jot-backend-node.vercel.app";
 
   const [newEventId, setNewEventId] = useState("");
   const [allEventIds, setAllEventIds] = useState([]);
