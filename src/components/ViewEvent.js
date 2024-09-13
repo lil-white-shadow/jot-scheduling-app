@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Helmet } from "react-helmet";
 
 export default function ViewEvent(props) {
   const [currentEvent, setCurrentEvent] = useState([]);
@@ -117,154 +118,161 @@ export default function ViewEvent(props) {
   console.log(currentEvent);
 
   return (
-    <div className="main main__ViewEvent">
-      {isLoading ? (
-        <div id="loading"></div>
-      ) : (
-        <>
-          <h1>You've been invited!</h1>
-          <div className="card">
-            <h2>
-              {currentEvent.eventName} (
-              {currentEvent.eventAttendees.length +
-                currentEvent.eventSpecialGuests.length}{" "}
-              attendees)
-            </h2>
-            <div className="cardLine">
-              <div className="cardLineTitle">Date: </div>
-              <div className="cardLineContent">
-                {getDay(currentEvent.eventDate)} ~ {currentEvent.eventDate}
-              </div>
-            </div>
-            <div className="cardLine">
-              <div className="cardLineTitle">Time: </div>
-              <div className="cardLineContent">
-                {currentEvent.eventStartTime} - {currentEvent.eventEndTime}{" "}
-                {currentEvent.eventEndTime < "12:00" ? "am" : null}
-              </div>
-            </div>
-            <div className="cardLine">
-              <div className="cardLineTitle">Location: </div>
-              <div className="cardLineContent">
-                {currentEvent.eventLocation}
-              </div>
-            </div>
-            <div className="cardLine">
-              <div className="cardLineTitle">Host: </div>
-              <div className="cardLineContent">
-                {currentEvent.eventOrganizer}
-              </div>
-            </div>
-          </div>
-          {!isFormSubmitted || !isFormValid ? (
-            <div>
-              <form className="card" onSubmit={onSubmit} noValidate>
-                <h2>Are you attending?</h2>
-                <div className="cardLine">
-                  <label htmlFor="userName" className="cardLineTitle">
-                    Name:{" "}
-                  </label>
-                  <input
-                    type="text"
-                    name="userName"
-                    onChange={(e) => setUserName(e.target.value)}
-                  />
-                </div>
-                <div className="cardLine">
-                  <label htmlFor="availability" className="cardLineTitle">
-                    Availability:{" "}
-                  </label>
-                  <select
-                    name="availability"
-                    onChange={(e) => setAvailability(e.target.value)}
-                    defaultValue=""
-                  >
-                    <option disabled value="">
-                      Select
-                    </option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-                <div className="cardLine">
-                  <label htmlFor="guestStatus" className="cardLineTitle">
-                    Are you a non-member (guest)?:{" "}
-                  </label>
-                  <input
-                    type="checkbox"
-                    name="guestStatus"
-                    onChange={(e) => setGuestStatus(e.target.value)}
-                  />
-                </div>
-                <div className="cardLine">
-                  <button type="submit">Submit</button>
-                </div>
-                {!isFormValid && isFormSubmitted ? (
-                  <span
-                    style={{ fontWeight: "700", textDecoration: "underline" }}
-                  >
-                    Error! You must enter your name & availability.
-                  </span>
-                ) : null}
-              </form>
-            </div>
-          ) : null}
-          {isFormSubmitted && isFormValid && !isSendingRSVP ? (
-            <div className="feedback">
-              <h2>You're all set &#10004;</h2>
-              <div>
-                Click{" "}
-                <span
-                  onClick={() => setIsFormSubmitted(false)}
-                  style={{ textDecoration: "underline", cursor: "pointer" }}
-                >
-                  here
-                </span>{" "}
-                to make changes or RSVP for someone else.
-              </div>
-            </div>
-          ) : null}
-          {isSendingRSVP ? (
-            <div id="loading"></div>
-          ) : (
+    <>
+      <Helmet>
+        <title>
+          {`${getDay(currentEvent.eventDate)} ~ ${currentEvent.eventDate}`}
+        </title>
+      </Helmet>
+      <div className="main main__ViewEvent">
+        {isLoading ? (
+          <div id="loading"></div>
+        ) : (
+          <>
+            <h1>You've been invited!</h1>
             <div className="card">
-              <h2>RSVP Details</h2>
-              <div className="cardLineGroup cardLineGroupVertical">
-                <div className="cardLine cardLineVertical">
-                  <div className="cardLineTitle">
-                    Members - {currentEvent.eventAttendees.length}
-                  </div>
-                  <ul>
-                    {currentEvent.eventAttendees.map((user) => (
-                      <li key={user}>{user} </li>
-                    ))}
-                  </ul>
+              <h2>
+                {currentEvent.eventName} (
+                {currentEvent.eventAttendees.length +
+                  currentEvent.eventSpecialGuests.length}{" "}
+                attendees)
+              </h2>
+              <div className="cardLine">
+                <div className="cardLineTitle">Date: </div>
+                <div className="cardLineContent">
+                  {getDay(currentEvent.eventDate)} ~ {currentEvent.eventDate}
                 </div>
-                <div className="cardLine cardLineVertical">
-                  <div className="cardLineTitle">
-                    Guests - {currentEvent.eventSpecialGuests.length}
-                  </div>
-                  <ul>
-                    {currentEvent.eventSpecialGuests.map((user) => (
-                      <li key={user}>{user}</li>
-                    ))}
-                  </ul>
+              </div>
+              <div className="cardLine">
+                <div className="cardLineTitle">Time: </div>
+                <div className="cardLineContent">
+                  {currentEvent.eventStartTime} - {currentEvent.eventEndTime}{" "}
+                  {currentEvent.eventEndTime < "12:00" ? "am" : null}
                 </div>
-                <div className="cardLine cardLineVertical">
-                  <div className="cardLineTitle">
-                    Unavailable - {currentEvent.eventNonAttendees.length}
-                  </div>
-                  <ul>
-                    {currentEvent.eventNonAttendees.map((user) => (
-                      <li key={user}>{user}</li>
-                    ))}
-                  </ul>
+              </div>
+              <div className="cardLine">
+                <div className="cardLineTitle">Location: </div>
+                <div className="cardLineContent">
+                  {currentEvent.eventLocation}
+                </div>
+              </div>
+              <div className="cardLine">
+                <div className="cardLineTitle">Host: </div>
+                <div className="cardLineContent">
+                  {currentEvent.eventOrganizer}
                 </div>
               </div>
             </div>
-          )}
-        </>
-      )}
-    </div>
+            {!isFormSubmitted || !isFormValid ? (
+              <div>
+                <form className="card" onSubmit={onSubmit} noValidate>
+                  <h2>Are you attending?</h2>
+                  <div className="cardLine">
+                    <label htmlFor="userName" className="cardLineTitle">
+                      Name:{" "}
+                    </label>
+                    <input
+                      type="text"
+                      name="userName"
+                      onChange={(e) => setUserName(e.target.value)}
+                    />
+                  </div>
+                  <div className="cardLine">
+                    <label htmlFor="availability" className="cardLineTitle">
+                      Availability:{" "}
+                    </label>
+                    <select
+                      name="availability"
+                      onChange={(e) => setAvailability(e.target.value)}
+                      defaultValue=""
+                    >
+                      <option disabled value="">
+                        Select
+                      </option>
+                      <option value="Yes">Yes</option>
+                      <option value="No">No</option>
+                    </select>
+                  </div>
+                  <div className="cardLine">
+                    <label htmlFor="guestStatus" className="cardLineTitle">
+                      Are you a non-member (guest)?:{" "}
+                    </label>
+                    <input
+                      type="checkbox"
+                      name="guestStatus"
+                      onChange={(e) => setGuestStatus(e.target.value)}
+                    />
+                  </div>
+                  <div className="cardLine">
+                    <button type="submit">Submit</button>
+                  </div>
+                  {!isFormValid && isFormSubmitted ? (
+                    <span
+                      style={{ fontWeight: "700", textDecoration: "underline" }}
+                    >
+                      Error! You must enter your name & availability.
+                    </span>
+                  ) : null}
+                </form>
+              </div>
+            ) : null}
+            {isFormSubmitted && isFormValid && !isSendingRSVP ? (
+              <div className="feedback">
+                <h2>You're all set &#10004;</h2>
+                <div>
+                  Click{" "}
+                  <span
+                    onClick={() => setIsFormSubmitted(false)}
+                    style={{ textDecoration: "underline", cursor: "pointer" }}
+                  >
+                    here
+                  </span>{" "}
+                  to make changes or RSVP for someone else.
+                </div>
+              </div>
+            ) : null}
+            {isSendingRSVP ? (
+              <div id="loading"></div>
+            ) : (
+              <div className="card">
+                <h2>RSVP Details</h2>
+                <div className="cardLineGroup cardLineGroupVertical">
+                  <div className="cardLine cardLineVertical">
+                    <div className="cardLineTitle">
+                      Members - {currentEvent.eventAttendees.length}
+                    </div>
+                    <ul>
+                      {currentEvent.eventAttendees.map((user) => (
+                        <li key={user}>{user} </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="cardLine cardLineVertical">
+                    <div className="cardLineTitle">
+                      Guests - {currentEvent.eventSpecialGuests.length}
+                    </div>
+                    <ul>
+                      {currentEvent.eventSpecialGuests.map((user) => (
+                        <li key={user}>{user}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="cardLine cardLineVertical">
+                    <div className="cardLineTitle">
+                      Unavailable - {currentEvent.eventNonAttendees.length}
+                    </div>
+                    <ul>
+                      {currentEvent.eventNonAttendees.map((user) => (
+                        <li key={user}>{user}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            )}
+          </>
+        )}
+      </div>
+    </>
   );
 }
