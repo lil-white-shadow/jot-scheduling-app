@@ -13,6 +13,8 @@ export default function ViewEvent(props) {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
 
+  const eventDate = currentEvent.eventDate;
+
   let formInputs = {
     userName: userName,
     availability: availability,
@@ -115,14 +117,17 @@ export default function ViewEvent(props) {
     return dayOfWeek;
   }
 
+  function getMMdd(dateString) {
+    // return date.getMonth() + 1 + "/" + (date.getDate() + 1);
+    return dateString.slice(5).replace("-", "/");
+  }
+
   console.log(currentEvent);
 
   return (
     <>
       <Helmet>
-        <title>
-          {`${getDay(currentEvent.eventDate)} ~ ${currentEvent.eventDate}`}
-        </title>
+        <title>{`${getDay(eventDate)}, ${getMMdd(eventDate)}`}</title>
       </Helmet>
       <div className="main main__ViewEvent">
         {isLoading ? (
@@ -140,7 +145,7 @@ export default function ViewEvent(props) {
               <div className="cardLine">
                 <div className="cardLineTitle">Date: </div>
                 <div className="cardLineContent">
-                  {getDay(currentEvent.eventDate)} ~ {currentEvent.eventDate}
+                  {getDay(eventDate)} ~ {eventDate}
                 </div>
               </div>
               <div className="cardLine">
