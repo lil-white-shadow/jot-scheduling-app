@@ -117,17 +117,14 @@ export default function ViewEvent(props) {
     return dayOfWeek;
   }
 
-  function getMMdd(dateString) {
-    // return date.getMonth() + 1 + "/" + (date.getDate() + 1);
-    return dateString.slice(5).replace("-", "/");
-  }
-
   console.log(currentEvent);
 
   return (
     <>
       <Helmet>
-        <title>{`${getDay(eventDate)}, ${getMMdd(eventDate)}`}</title>
+        <title>{`${getDay(eventDate)}, ${eventDate
+          ?.slice(5)
+          .replace("-", "/")}`}</title>
       </Helmet>
       <div className="main main__ViewEvent">
         {isLoading ? (
