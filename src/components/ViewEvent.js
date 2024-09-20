@@ -36,13 +36,13 @@ export default function ViewEvent(props) {
           setCurrentEvent(data[0]);
           // remove duplicate name if present in any category
           let availableArray = data[0].eventAttendees.filter(
-            (name) => name !== formInputs.userName.toUpperCase()
+            (name) => name !== formInputs.userName.toUpperCase().trim()
           );
           let specialInviteesArray = data[0].eventSpecialGuests.filter(
-            (name) => name !== formInputs.userName.toUpperCase()
+            (name) => name !== formInputs.userName.toUpperCase().trim()
           );
           let unavailableArray = data[0].eventNonAttendees.filter(
-            (name) => name !== formInputs.userName.toUpperCase()
+            (name) => name !== formInputs.userName.toUpperCase().trim()
           );
 
           // add name to the applicable category
